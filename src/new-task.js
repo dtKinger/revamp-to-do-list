@@ -27,6 +27,7 @@ export function newToDoObj (e) {
   let myFormData = new FormData(e.target);
   let formDataObj = {};
   myFormData.forEach((value, key) => (formDataObj[key] = value));
+  formDataObj = {...formDataObj, createdAt: new Date()} // Add meta data of the date created.
   // sortAll();
   console.info('formDataObj looks like ' + Object.entries(formDataObj));
   tasksToDo.push(formDataObj);
