@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+@font-face {
+  font-family: 'Norse';
+  src: url('Norse-Bold.otf');
+}
+
+/* TURN ON FOR DEV TESTING
+div{
+  border: 2px solid red;
+}
+*/
+
+ /* =================== \
+|        Variables       |
+ \ =================== */
+
+
+ :root {
+  --color-bg-primary: ivory;
+  --color-bg-secondary: rgb(56, 56, 56);
+  --color-text-primary: rgb(56, 56, 56);
+  --color-text-secondary: ivory;
+  --color-checkbox-green: green;
+  --color-state-indeterminate: yellow;
+  --color-state-success: limegreen;
+  --color-state-error: rgb(225, 0, 0);
+  --color-state-caution: orange;
+  --color-accent-a: darkcyan;
+  --color-accent-b: rgb(187, 161, 11);
+  --color-accent-b-faded: rgba(187, 161, 11, 0.75);
+
+  font-size: 18px;
+  --font-size-h1: 30px;
+  --font-size-h2: 24px;
+  --font-size-h3: 19px;
+
+  font-weight: 500;
+  --font-weight-h1: 800;
+  --font-weight-h2: 700;
+  --font-weight-h3: 600;
+
+  --section-height-header: 5vh;
+  --section-height-footer: 5vh;
+  --section-height-main: calc(100vh - (var(--section-height-header) + var(--section-height-footer)));
+
+  --width-left-panel: 33vw;
+}
+
+ /* =================== \
+|         Elements       |
+ \ =================== */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  box-sizing: border-box;
+}
+
+h1{
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-h1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2{
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-h2);
+  padding: 12px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--color-bg-secondary);
+}
+
+h3{
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-h3);
+  padding: 10px;
+}
+
+header, footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  padding: 10px;
+}
+
+header {
+  min-height: var(--section-height-header);
+}
+
+footer {
+  min-height: var(--section-height-footer);  
+  padding: auto 0; 
+}
+
+main {
+  min-height: var(--section-height-main);
+}
+
+/* Will need to replace the OS styles */
+input{
+  appearance: none;
+}
+
+input[type="checkbox"]{
+  position: relative; /* This is key, otherwise the checkbox is not clickable */
+  border: 1px solid black;
+  width: 1em;
+  height: 1em;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -4px;
+  /* Set here so that Windows' High-Contrast Mode can override */
+  color: green;
+}
+
+input[type="checkbox"]::before{
+  content: "✔";
+  position: absolute;
+  font-size: 1.2em;
+  right: -1px;
+  top: -0.3em;
+  visibility: hidden;
+}
+
+/* Must do :state::psuedo-class not
+the other way around */
+input[type="checkbox"]:checked::before{
+  visibility: visible;
+}
+
+/*
+input[type="radio"]{
+  
+}
+
+input[type="radio"]:checked::before{
+  
+}
+
+input[type="radio"]::before{
+  
+}
+*/
+
+legend{
+  color: green;
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: center;
+  border: 2px solid green;
+}
+
+input:read-only{
+  background-color: lightgray;
+}
+
+input:autofill {
+  border: 1px solid purple;  
+}
+
+input:-webkit-autofill{
+  border: 10px solid purple;
+}
+
+button{
+  background-color: rgb(56, 56, 56);
+  color: ivory;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:active{
+  transform: scale(0.9);
+}
+
+
+a, a:visited, a:active {
+  color: inherit;
+}
+
+a:hover{
+  color: inherit;
+  transform: scale(1.05);
+  transition: ease-in-out 0.2s;
+}
+
+ /* =================== \
+|         Classes        |
+ \ =================== */ 
+
+.section-wrapper {
+  min-height: 30vh;
+  border: 2px dashed red;
+}
+
+.deck {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 2px dashed red;
+  height: 150px;
+}
+
+.todo-item {
+  gap: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color-bg-secondary);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.to-do{
+  
+}
+
+#to-dones > .todo-item{
+  box-shadow: 0px 0px 3px 2px green;
+  border: 2px solid green;
+}
+
+.todo-item p {
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+
+.container > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 5px;
+  gap: 4px;
+}
+
+.description {
+  font-size: 0.8em;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+}
+
+.description::before{
+  content: '"';
+}
+
+.description::after{
+  content: '"';
+}
+
+.flags {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flags > span {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.due-date {
+  background-color: lightblue;
+}
+
+.priority__High {
+  background-color: red;
+}
+
+.priority__Medium {
+  background-color: yellow;
+}
+
+.priority__Low {
+  background-color: green;
+}
+
+.to-dos, .to-dones{
+  position: relative;;
+}
+
+.heading-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-btn, .move-todones, .move-todos {
+  display: inline-block;
+  position: relative;
+  padding: 2px 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.move-todones, .move-todos{
+  background-color: green;
+  border: 1px solid black;
+}
+
+.move-todos{
+  font-size: 1em;
+  text-align: center;
+}
+
+.move-todos > span {
+  box-sizing: border-box;
+  display: block;
+  transform: rotate(-90deg) scale(1.4) translateY(-8%) translateX(5%);
+  width: 32px;
+  height: 32px;
+}
+
+.btns {
+  justify-content: center;
+}
+
+.top-nav {
+  width: 100%;
+}
+
+.top-nav ul{
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-nav ul li {
+  padding: 4px 8px;
+  border: 2px solid var(--color-bg-primary);
+  border-radius: 8px;
+}
+
+.form {
+  display: none;
+  position: fixed;
+  left: 20%;
+  top: 6em;
+  z-index: 10;
+  width: 60vw;
+  min-height: 40vw;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  border: 2px solid var(--color-bg-secondary);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.show {
+  display: flex;
+  flex-direction: column
+}
+
+.form > * {
+  padding: 8px;
+  margin: 8px;
+}
+
+.form > textarea {
+  resize: vertical;
+}
+
+.form > select {
+
+}
+
+#submit-new {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
