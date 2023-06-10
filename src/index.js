@@ -23,3 +23,20 @@ export const main = document.getElementById('main');
 // Delete from completedTasks[]
 // tasksToDo.push(previouslyCompleted)
 // Render
+
+
+
+
+ /* =================== \
+|       Initialize       |
+ \ =================== */
+renderToDos();
+renderToDones();
+
+export function refreshEventListeners () {
+  
+};
+refreshEventListeners();
+ /* =================== \
+|      END PAGE LOAD     |
+ \ =================== */
