@@ -56,8 +56,10 @@ export function renderToDos () {
   // Delete buttons
   let deleteBtns = document.querySelectorAll('.delete-btn');
   deleteBtns.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.target.parentElement.parentElement.parentElement.remove();
+    button.addEventListener('click', (e, index) => {
+      temp = e.target.parentElement.parentElement.parentElement;
+      temp.remove();
+      tasksToDo.splice(index, 1)
     })
   })
   // Checkmarks
