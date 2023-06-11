@@ -21,26 +21,26 @@
     </nav>
   </header>
   <main id="main">
-    <form id="add-new-to-do" class="form">
+    <form action="" id="add-new-to-do" class="form">
       <label for="title">Task name</label>
-      <input id ="title" type="text" name="title" data-title="" maxlength="250" required>
+      <input id="title" type="text" name="title" data-title="" maxlength="250" required>
       <label for="description">Description</label>
       <textarea rows="4" id="description" type="text" name="description" placeholder="Note to self..." maxlength="250"></textarea>
       <label for="priority-select">Priority</label>
-      <select name="priority" id="priority-select">
+      <select name="priority" class="priority" id="priority-select">
         <option value="High">High</option>
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
       <label for="date-picker">Due date</label>
-      <input type="date" id="date-picker" name="dueDate" max="9999-12-31" required>
+      <input type="date" id="date-picker" name="dueDate" class="due-date" max="9999-12-31" required>
       <button id="submit-new" type="submit">Submit</button>
     </form>
     <div class="container">
       <div id="to-dos">
         <h2 class="section-title">TO DOs</h2>
         <div class="sort">
-          <label for="sort-to-dones">Sort by:</label>
+          <label for="sort-to-dos">Sort by:</label>
           <select name="" id="sort-to-dos">
             <option value="sort-date-created" id="sort-dones-created">Date created</option>
             <option value="sort-due-date" id="sort-dones-due">Due Date</option>
