@@ -1,5 +1,6 @@
-import { toDoList } from "./index";
-import { refreshEventListeners } from "./index";
+import { toDoList, checkmarks } from "./index.js";
+import { completedTasks, renderToDones } from "./to-dones.js";
+
 
 export let tasksToDo = [
   {
@@ -8,30 +9,83 @@ export let tasksToDo = [
     "priority": "Medium",
     "dueDate": "2023-12-06",
     "createdAt": "2023-06-05"
-  }
+  },
+  {
+    "title": "Create a library app",
+    "description": "Use object constructors to add books to a library, optionally marking them as read. Allow use to withdraw (delete) books.",
+    "priority": "Low",
+    "dueDate": "2023-12-06",
+    "createdAt": "2023-01-01"
+  },
 ];
 
 export function renderToDos () {
-for (let i = 0; i < tasksToDo.length; i += 1){
-  let newTask = document.createElement('div');
-  newTask.classList = "todo-item";
-  let toDoItem = tasksToDo[i];
-  newTask.innerHTML = `
+  
+  // Dump existing
+  toDoList.innerHTML = `
+  <h2 class="section-title">TO DOs</h2>
+  <div class="sort">
+    <label for="sort-to-dones">Sort by:</label>
+    <select name="" id="sort-to-dos">
+      <option value="sort-date-created" id="sort-dones-created">Date created</option>
+      <option value="sort-due-date" id="sort-dones-due">Due Date</option>
+      <option value="sort-priority" id="sort-dones-priority">Priority</option>
+    </select>
+  </div>
+  `
+  for (let i = 0; i < tasksToDo.length; i += 1){
+    let newTask = document.createElement('div');
+    newTask.classList = "todo-item";
+    newTask.innerHTML = `
     <div class="heading-bar">
-      <h3 class="title">${toDoItem.title}</h3>
+      <h3 class="title">${tasksToDo[i].title}</h3>
       <div class="btns">
-        <button class="delete-btn needs-refresh">&times;</button>
-        <button class="move-todones needs-refresh" alt="Mark as complete" title="Mark as complete">&check;</button>
+        <button class="delete-btn">&times;</button>
+        <button class="move-todones" alt="Mark as complete" title="Mark as complete">&check;</button>
       </div>
     </div>
-    <p class="description">${toDoItem.description}</p>
+    <p class="description">${tasksToDo[i].description}</p>
     <div class="flags">
-      <span class="priority priority__${toDoItem.priority}">${toDoItem.priority}</span>
+      <span class="priority priority__${tasksToDo[i].priority}">${tasksToDo[i].priority}</span>
       <p class="bumper"></p>
-      <span class="due-date">${toDoItem.dueDate}</span>
+      <span class="due-date">${tasksToDo[i].dueDate}</span>
     </div>
   `
-  toDoList.append(newTask);
+  toDoList.appendChild(newTask);
   };
-  refreshEventListeners();
+  // Delete buttons
+  let deleteBtns = document.querySelectorAll('.delete-btn');
+  deleteBtns.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.target.parentElement.parentElement.parentElement.remove();
+    })
+  })
+  // Checkmarks
+  let checkmarks = document.querySelectorAll('.move-todones');
+
+  let temp = null;
+  let title = '';
+  let description = ''; 
+  let priority = '';
+  let dueDate = '';
+
+  checkmarks.forEach((checkmark) => {
+    checkmark.addEventListener('click', (e, index) => {
+      temp = e.target.parentElement.parentElement.parentElement;
+      tasksToDo.splice(index, 1);
+      title = temp.querySelector('.title').textContent;
+      description = temp.querySelector('.description').textContent;
+      priority = temp.querySelector('.priority').textContent;
+      dueDate = temp.querySelector('.due-date').textContent;
+      temp = {
+        "title": title,
+        "description": description,
+        "priority": priority,
+        "dueDate": dueDate,
+        "updatedAt": new Date()
+      };
+      completedTasks.push(temp);
+      e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+    })
+  })
 };

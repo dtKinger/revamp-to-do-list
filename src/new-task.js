@@ -1,42 +1,23 @@
-import { toDoList, toDoneList, topNav } from "./index";
-import { tasksToDo } from "./to-do"
-
+import { toDoList, toDoneList, topNav } from "./index.js";
+import { tasksToDo, renderToDos } from "./to-do.js"
+import { completedTasks } from "./to-dones.js";
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
 export const submitNewToDo = document.getElementById('submit-new');
-import { refreshEventListeners } from "./index";
-
-
-// Create a new Task from form data
-// export class Task {
-//   constructor(title, description, priority, dueDate, createdAt) {
-
-//     this.title = title;
-//     this.description = description;
-//     this.priority = priority;
-//     this.dueDate = dueDate;
-//     this.createdAt = new Date();
-
-//   }
-// };
 
 export const form = document.getElementById('add-new-to-do');
 addNewForm.addEventListener('submit', newToDoObj);
+
 export function newToDoObj (e) {
   e.preventDefault();
   let myFormData = new FormData(e.target);
   let formDataObj = {};
   myFormData.forEach((value, key) => (formDataObj[key] = value));
-  formDataObj = {...formDataObj, createdAt: new Date()} // Add meta data of the date created.
+  formDataObj = {...formDataObj, "createdAt": new Date()} // Add meta data of the date created.
   // sortAll();
-  console.info('formDataObj looks like ' + Object.entries(formDataObj));
   tasksToDo.push(formDataObj);
-  console.log(Object.entries(tasksToDo));
-  console.log(tasksToDo[1]);
-  //tasksToDo.push(myFormData)
   renderToDos();
-  refreshEventListeners();
   form.reset();
 };
 
@@ -65,3 +46,6 @@ window.addEventListener('keyup', (e) => {
     }
   };
 });
+
+
+

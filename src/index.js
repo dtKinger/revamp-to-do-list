@@ -1,6 +1,6 @@
 import { createdAt } from "./new-task"; 
-import { renderToDos } from "./to-do";
-import { renderToDones } from "./to-dones"; 
+import { renderToDos, tasksToDo } from "./to-do";
+import { renderToDones, completedTasks } from "./to-dones"; 
 
 export const topNav = document.getElementById('top-nav');
 export const toDoList = document.getElementById('to-dos');
@@ -25,18 +25,35 @@ export const main = document.getElementById('main');
 // Render
 
 
-
-
  /* =================== \
 |       Initialize       |
  \ =================== */
 renderToDos();
 renderToDones();
 
-export function refreshEventListeners () {
-  
-};
-refreshEventListeners();
  /* =================== \
 |      END PAGE LOAD     |
  \ =================== */
+ 
+
+
+// This removes the need to call circular functions, e.g. renderToDos() {
+// ...
+// renderToDones (){
+//   
+//   }
+// }
+// On any "move" button click, render the appropriate list.
+window.addEventListener('click', (e) => {
+if (e.target.classList.contains('move-todones')){ // Do checkmark things
+  // setTimeout(() => {
+    renderToDones();
+  // }, 100)
+} else if (e.target.classList.contains('restore')) { // Do Restore things
+  // setTimeout(() => {
+    renderToDos();
+  // }, 100)
+}
+})
+
+
