@@ -1,6 +1,5 @@
 import { toDoList, toDoneList, topNav } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
-import { completedTasks } from "./to-dones.js";
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
@@ -33,6 +32,7 @@ export function newToDoObj (e) {
 
     console.log(taskDetails);
     tasksToDo.push(taskDetails);
+    console.info(tasksToDo);
     addNewForm.reset();
     renderToDos();
 }
