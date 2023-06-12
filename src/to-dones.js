@@ -26,6 +26,7 @@ export function renderToDones () {
   <div class="sort">
     <label for="sort-to-dones">Sort by:</label>
     <select name="" id="sort-to-dones">
+      <option value="sort-default" id="sort-dos-default">Default</option> 
       <option value="sort-date-created" id="sort-dones-created">Date created</option>
       <option value="sort-due-date" id="sort-dones-due">Due date</option>
       <option value="sort-priority" id="sort-dones-priority">Priority</option>
