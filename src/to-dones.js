@@ -55,11 +55,13 @@ export function renderToDones () {
   // Restore Buttons
   let restoreBtns = document.querySelectorAll('.restore');
 
-  restoreBtns.forEach( (button) => {
-    button.addEventListener('click', (e, index) => {
+  restoreBtns.forEach( (button, index) => {
+    button.addEventListener('click', (e) => {
+      console.log(`index is ${index}`);
       let movedTask = completedTasks.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
-      e.target.parentElement.parentElement.parentElement.parentElement.remove(); // Delete from the original position
       tasksToDo.push(movedTask);
+      e.target.parentElement.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+      console.log(`index is ${index}`);
       console.log('completedTasks represents:')
       console.info(completedTasks);
       console.log('tasksToDo represents:')

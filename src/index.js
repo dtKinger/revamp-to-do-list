@@ -31,13 +31,13 @@ renderToDones();
 // On any "move" button click, render the appropriate list.
 window.addEventListener('click', (e) => {
 if (e.target.classList.contains('move-todones')){ // Do checkmark things
-  // setTimeout(() => {
+  setTimeout(() => {
     renderToDones();
-  // }, 100)
+  }, 100)
   } else if (e.target.classList.contains('restore')) { // Do Restore things
-    // setTimeout(() => {
+    setTimeout(() => {
       renderToDos();
-    // }, 100)
+    }, 100)
   }
 })
 

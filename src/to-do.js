@@ -36,7 +36,8 @@ export function renderToDos () {
   for (let i = 0; i < tasksToDo.length; i += 1){
     let newTask = document.createElement('div');
     newTask.classList = "todo-item";
-    newTask.innerHTML = `
+    newTask.innerHTML = 
+    `
     <div class="heading-bar">
       <h3 class="title">${tasksToDo[i].title}</h3>
       <div class="btns">
@@ -53,28 +54,35 @@ export function renderToDos () {
   `
   toDoList.appendChild(newTask);
   };
+
   // Delete buttons
   let deleteBtns = document.querySelectorAll('.delete-btn');
-  deleteBtns.forEach((button) => {
-    button.addEventListener('click', (e, index) => {
-      e.target.parentElement.parentElement.parentElement.remove();
+  deleteBtns.forEach((button, index) => {
+    button.addEventListener('click', (e) => {
+      console.log(`index is ${index}`);
+      
       tasksToDo.splice(index, 1) // don't need to reassign this.
-      console.log('tasksToDo represents:')
-      console.info(tasksToDo);
+      e.target.parentElement.parentElement.parentElement.remove();
+      console.log(`index is ${index}`);
+      // console.log('tasksToDo represents:')
+      // console.info(tasksToDo);
     })
   })
   // Checkmarks
   let checkmarks = document.querySelectorAll('.move-todones');
 
-  checkmarks.forEach((checkmark) => {
-    checkmark.addEventListener('click', (e, index) => {
+  checkmarks.forEach((checkmark, index) => {
+    checkmark.addEventListener('click', (e) => {
+      console.log(`index is ${index}`);
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
-      e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
       completedTasks.push(movedTask);
+      e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+      console.log(`index is ${index}`);
       console.log('tasksToDo represents:')
       console.info(tasksToDo);
       console.log('completedTasks represents:')
       console.info(completedTasks);
     })
   })
+
 };
