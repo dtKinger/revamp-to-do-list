@@ -398,3 +398,8 @@ a:hover{
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
+
+.truncate {
+  text-align: center;
+  margin: 0 auto;
+}

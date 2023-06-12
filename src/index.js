@@ -1,6 +1,7 @@
 import { addToDo } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
 import { renderToDos, tasksToDo } from "./to-do";
 import { renderToDones, completedTasks } from "./to-dones"; 
+import {} from "./truncate.js"
 
 export const topNav = document.getElementById('top-nav');
 export const toDoList = document.getElementById('to-dos');

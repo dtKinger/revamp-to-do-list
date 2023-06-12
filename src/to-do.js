@@ -1,7 +1,6 @@
 import { toDoList } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
-
 export let tasksToDo = [
   {
     "title": "Make To Do App",
@@ -60,13 +59,8 @@ export function renderToDos () {
   let deleteBtns = document.querySelectorAll('.delete-btn');
   deleteBtns.forEach((button, index) => {
     button.addEventListener('click', (e) => {
-      console.log(`index is ${index}`);
-      
       tasksToDo.splice(index, 1) // don't need to reassign this.
       e.target.parentElement.parentElement.parentElement.remove();
-      console.log(`index is ${index}`);
-      // console.log('tasksToDo represents:')
-      // console.info(tasksToDo);
     })
   })
   // Checkmarks
@@ -74,15 +68,9 @@ export function renderToDos () {
 
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
-      console.log(`index is ${index}`);
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
       completedTasks.push(movedTask);
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
-      console.log(`index is ${index}`);
-      console.log('tasksToDo represents:')
-      console.info(tasksToDo);
-      console.log('completedTasks represents:')
-      console.info(completedTasks);
     })
   })
 
