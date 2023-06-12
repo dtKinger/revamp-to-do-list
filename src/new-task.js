@@ -6,7 +6,32 @@ export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Butt
 export const addNewForm = document.getElementById('add-new-to-do');
 export const submitNewToDo = document.getElementById('submit-new');
 
-export const form = document.getElementById('add-new-to-do');
+// export let title = document.getElementById('title')
+// export let description = document.getElementById('description');
+// export let priority = document.getElementById('priority-select');
+// export let dueDate = document.getElementById('date-picker');
+// export let createdAt = new Date();
+
+// class Task {
+//   constructor (title, description, priority, dueDate, createdAt){
+//     this.title = title.value;
+//     this.description = description.value;
+//     this.priority = priority.value;
+//     this.dueDate = dueDate.value;
+//     this.createdAt = createdAt;
+//   }  
+// }
+
+// submitNewToDo.addEventListener('click', newToDoObj);
+// export function newToDoObj (e) {
+//     e.preventDefault();
+//     let taskDetails = new Task;
+//     console.log(taskDetails);
+//     tasksToDo.push(taskDetails);
+//     addNewForm.reset();
+//     renderToDos();
+// }
+
 addNewForm.addEventListener('submit', newToDoObj);
 
 export function newToDoObj (e) {
@@ -14,11 +39,11 @@ export function newToDoObj (e) {
   let myFormData = new FormData(e.target);
   let formDataObj = {};
   myFormData.forEach((value, key) => (formDataObj[key] = value));
-  formDataObj = {...formDataObj, "createdAt": new Date()} // Add meta data of the date created.
+  let formDataObjWithDate = {...formDataObj, "createdAt": new Date().toDateString()} // Add meta data of the date created.
   // sortAll();
-  tasksToDo.push(formDataObj);
+  tasksToDo[tasksToDo.length] = formDataObjWithDate;
+  addNewForm.reset();
   renderToDos();
-  form.reset();
 };
 
 addToDo.addEventListener('click', () => {

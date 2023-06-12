@@ -1,5 +1,5 @@
-import { toDoneList, restoreBtns } from "./index.js";
-import { renderToDos, tasksToDo } from "./to-do.js"; 
+import { toDoneList} from "./index.js";
+import { tasksToDo } from "./to-do.js"; 
 
 export let completedTasks = [
   {
@@ -61,24 +61,23 @@ export function renderToDones () {
   let dueDate = '';
 
   restoreBtns.forEach( (button) => {
-    button.addEventListener('click', (e, index) => {
-      let temp = (e.target.parentElement.parentElement.parentElement.parentElement);
-      completedTasks.splice(index, 1);
-      title = temp.querySelector('.title').textContent;
-      description = temp.querySelector('.description').textContent;
-      priority = temp.querySelector('.priority').textContent;
-      dueDate = temp.querySelector('.due-date').textContent;
-      temp = {
-        "title": title,
-        "description": description,
-        "priority": priority,
-        "dueDate": dueDate,
-        "updatedAt": new Date()
-      };
-        tasksToDo.push(temp)
-        e.target.parentElement.parentElement.parentElement.parentElement.remove();
-        // renderToDos();
-      })
+  button.addEventListener('click', (e, index) => {
+    let temp = (e.target.parentElement.parentElement.parentElement.parentElement);
+    completedTasks.splice(index, 1);
+    title = temp.querySelector('.title').textContent;
+    description = temp.querySelector('.description').textContent;
+    priority = temp.querySelector('.priority').textContent;
+    dueDate = temp.querySelector('.due-date').textContent;
+    let tempObj = {
+      "title": title,
+      "description": description,
+      "priority": priority,
+      "dueDate": dueDate,
+      "updatedAt": new Date().toDateString()
+    };
+      tasksToDo.push(tempObj)
+      e.target.parentElement.parentElement.parentElement.parentElement.remove();
+      return tasksToDo;
     })
-  
+  })
 };

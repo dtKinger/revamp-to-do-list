@@ -73,21 +73,22 @@ export function renderToDos () {
 
   checkmarks.forEach((checkmark) => {
     checkmark.addEventListener('click', (e, index) => {
-      temp = e.target.parentElement.parentElement.parentElement;
-      tasksToDo.splice(index, 1);
-      title = temp.querySelector('.title').textContent;
-      description = temp.querySelector('.description').textContent;
-      priority = temp.querySelector('.priority').textContent;
-      dueDate = temp.querySelector('.due-date').textContent;
-      temp = {
+      temp = e.target.parentElement.parentElement.parentElement; // Copy the whole ToDo item into memory
+      tasksToDo.splice(index, 1); // Delete the tasksToDo array element at [index]
+      title = temp.querySelector('.title').textContent;  // Extract the details from temp
+      description = temp.querySelector('.description').textContent; // Extract the details from temp
+      priority = temp.querySelector('.priority').textContent; // Extract the details from temp
+      dueDate = temp.querySelector('.due-date').textContent; // Extract the details from temp
+      let tempObj = { // Reassign temp as an object
         "title": title,
         "description": description,
         "priority": priority,
         "dueDate": dueDate,
-        "updatedAt": new Date()
+        "updatedAt": new Date().toDateString()
       };
-      completedTasks.push(temp);
+      completedTasks.push(tempObj); // push the new Object to the other Array.
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+      return completedTasks;
     })
   })
 };
