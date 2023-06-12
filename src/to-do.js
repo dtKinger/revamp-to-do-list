@@ -59,6 +59,8 @@ export function renderToDos () {
     button.addEventListener('click', (e, index) => {
       e.target.parentElement.parentElement.parentElement.remove();
       tasksToDo.splice(index, 1) // don't need to reassign this.
+      console.log('tasksToDo represents:')
+      console.info(tasksToDo);
     })
   })
   // Checkmarks
@@ -67,8 +69,12 @@ export function renderToDos () {
   checkmarks.forEach((checkmark) => {
     checkmark.addEventListener('click', (e, index) => {
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
-      completedTasks.push(movedTask);
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+      completedTasks.push(movedTask);
+      console.log('tasksToDo represents:')
+      console.info(tasksToDo);
+      console.log('completedTasks represents:')
+      console.info(completedTasks);
     })
   })
 };

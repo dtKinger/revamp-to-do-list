@@ -32,6 +32,7 @@ export function newToDoObj (e) {
 
     console.log(taskDetails);
     tasksToDo.push(taskDetails);
+    console.log('tasksToDo represents:')
     console.info(tasksToDo);
     addNewForm.reset();
     renderToDos();

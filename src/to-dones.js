@@ -52,32 +52,18 @@ export function renderToDones () {
   toDoneList.appendChild(doneTask);
   };
   
+  // Restore Buttons
   let restoreBtns = document.querySelectorAll('.restore');
 
-  let temp = null;
-  let title = '';
-  let description = ''; 
-  let priority = '';
-  let dueDate = '';
-
   restoreBtns.forEach( (button) => {
-  button.addEventListener('click', (e, index) => {
-    let temp = (e.target.parentElement.parentElement.parentElement.parentElement);
-    completedTasks.splice(index, 1);
-    title = temp.querySelector('.title').textContent;
-    description = temp.querySelector('.description').textContent;
-    priority = temp.querySelector('.priority').textContent;
-    dueDate = temp.querySelector('.due-date').textContent;
-    let tempObj = {
-      "title": title,
-      "description": description,
-      "priority": priority,
-      "dueDate": dueDate,
-      "updatedAt": new Date().toDateString()
-    };
-      tasksToDo.push(tempObj)
-      e.target.parentElement.parentElement.parentElement.parentElement.remove();
-      return tasksToDo;
+    button.addEventListener('click', (e, index) => {
+      let movedTask = completedTasks.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
+      e.target.parentElement.parentElement.parentElement.parentElement.remove(); // Delete from the original position
+      tasksToDo.push(movedTask);
+      console.log('completedTasks represents:')
+      console.info(completedTasks);
+      console.log('tasksToDo represents:')
+      console.info(tasksToDo);
     })
   })
 };
