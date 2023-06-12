@@ -29,17 +29,24 @@ renderToDones();
 //   }
 // }
 // On any "move" button click, render the appropriate list.
+// window.addEventListener('click', (e) => {
+// if (e.target.classList.contains('move-todones')){ // Do checkmark things
+//   setTimeout(() => {
+//     renderToDones();
+//   }, 100)
+//   } else if (e.target.classList.contains('restore')) { // Do Restore things
+//     setTimeout(() => {
+//       renderToDos();
+//     }, 100)
+//   }
+// })
+
 window.addEventListener('click', (e) => {
-if (e.target.classList.contains('move-todones')){ // Do checkmark things
-  setTimeout(() => {
+  if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore')){
+    renderToDos();
     renderToDones();
-  }, 100)
-  } else if (e.target.classList.contains('restore')) { // Do Restore things
-    setTimeout(() => {
-      renderToDos();
-    }, 100)
-  }
-})
+  };
+});
 
 
 
