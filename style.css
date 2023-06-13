@@ -403,3 +403,39 @@ a:hover{
   text-align: center;
   margin: 0 auto;
 }
+
+.shrink-controller {
+  position: relative;
+}
+
+.shrink-controller::before {
+  display: flex;
+  content: "^";
+  font-size: 1.5em;
+  color: white;
+  background-color: black;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  left: -20px;
+}
+
+.shrink-controller:hover::before{
+  cursor: pointer;
+}
+
+.shrink > p, .shrink > div.flags{
+  display: none;
+}
+
+.truncate-btns > button {
+  display: none;
+  max-width: 100px;
+}
+
+.truncate-btns {
+  width: 240px;
+  margin: 0 auto;
+}
