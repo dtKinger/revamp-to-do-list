@@ -1,14 +1,37 @@
-import { toDoList, toDoneList } from "./index.js";
 const truncateBtn = document.querySelector('.truncate');
-let okay = document.querySelectorAll('.todo-item');
+
+let chevron = document.querySelector('.shrink-controller', ':before');
+
+let toDoList = document.getElementById('to-dos');
+let toDoneList = document.getElementById('to-dones');
+
+export let toDos = toDoList.querySelectorAll('.todo-item');
+export let toDones = toDoneList.querySelectorAll('.todo-item');
+
 
 export function refreshTruncate () {
   
-  let toDos = toDoList.querySelectorAll('.todo-item');
-  let toDones = toDoneList.querySelectorAll('.todo-item');
+  toDos = toDoList.querySelectorAll('.todo-item');
+  toDones = toDoneList.querySelectorAll('.todo-item');
 
   console.log(toDos);
   console.info(toDones);
+
+  if (toDos.length > 2){
+    toDos[2].classList.add('shrink-controller')
+    for (let i = 2; i < toDos.length; i += 1){
+      toDos[i].classList.add('shrink')
+    }
+  }
+
+  if (toDones.length > 2){
+    toDones[2].classList.add('shrink-controller')
+    for (let i = 2; i < toDones.length; i += 1){
+      toDones[i].classList.add('shrink')
+    }
+  }
+
+  console.log(chevron);
 
 };
 

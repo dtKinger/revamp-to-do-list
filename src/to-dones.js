@@ -1,5 +1,6 @@
+import { refreshTruncate, toDos, toDones } from './truncate.js'
 import { toDoneList } from "./index.js";
-import { tasksToDo } from "./to-do.js"; 
+import { tasksToDo } from "./to-do.js";
 
 export let completedTasks = [
   {

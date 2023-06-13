@@ -1,3 +1,4 @@
+import { refreshTruncate, toDos, toDones } from "./truncate.js";
 import { toDoList } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
@@ -73,5 +74,11 @@ export function renderToDos () {
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
     })
   })
+
+  // Truncate buttons
+
+  if (toDos.length > 2 || toDones.length > 2){
+    refreshTruncate();
+  }
 
 };
