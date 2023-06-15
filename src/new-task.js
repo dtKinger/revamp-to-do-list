@@ -1,4 +1,5 @@
-import { toDoList, toDoneList, topNav, taskCounter } from "./index.js";
+import { taskCounter } from "./globals.js"
+import { toDoList, toDoneList, topNav } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
@@ -17,6 +18,7 @@ class Task {
   }  
 }
 
+
 addNewForm.addEventListener('submit', newToDoObj);
 export function newToDoObj (e) {
     e.preventDefault();
@@ -30,21 +32,16 @@ export function newToDoObj (e) {
     let taskDetails = new Task(title, description, priority, dueDate, createdAt)
 
     // create newTask with a unique Key number. Stringify the whole object.
-    newTask = newTask + taskCounter;
-    console.log(taskCounter);
-    localStorage.setItem('newTask', JSON.stringify(taskDetails));
-    console.log(taskCounter);
+    
+    localStorage.setItem('newTask' + global.taskCounter, JSON.stringify(taskDetails));
     
     tasksToDo.push(taskDetails);
 
-    
-    localStorage.setItem('taskCounter', taskCounter);
-    console.log(taskCounter);
-    taskCounter += 1;
-    console.log(taskCounter);
+    localStorage.setItem('taskCounter', global.taskCounter);
+    global.taskCounter += 1;
 
     addNewForm.reset();
-    addNewForm.title.focus();
+    addNewForm.querySelector('#title').focus();
     renderToDos();
 }
 
