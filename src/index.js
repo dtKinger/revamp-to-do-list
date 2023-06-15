@@ -8,7 +8,7 @@ export const toDoneList = document.getElementById('to-dones');
 
 export const main = document.getElementById('main');
 
-export let taskCounter = 0; // Ignore count on the dummy cards. keep taskCounter 
+global.taskCounter = 0; // Ignore count on the dummy cards. keep taskCounter 
 // equal to the number of items created and incremented.
 // Keep in mind, I have two arrays, To Do and To Dones, so this number won't
 // Match the index in those arrays. Use this number for localStorage only.
@@ -36,7 +36,7 @@ renderToDones();
 function loadFromLocalStorage () {
   
   if (localStorage.taskCounter){
-    taskCounter = localStorage.getItem('taskCounter');
+    taskCounter = localStorage.getItem(parseInt('taskCounter'));
   } else {
     taskCounter = 0;
   }

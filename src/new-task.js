@@ -7,7 +7,6 @@ export const addNewForm = document.getElementById('add-new-to-do');
 
 export let newTask = '';
 
-
 class Task {
   constructor (title, description, priority, dueDate, createdAt){
     this.title = title;
@@ -31,7 +30,7 @@ export function newToDoObj (e) {
     let taskDetails = new Task(title, description, priority, dueDate, createdAt)
 
     // create newTask with a unique Key number. Stringify the whole object.
-    newTask =  newTask + taskCounter;
+    newTask = newTask + taskCounter;
     localStorage.setItem('newTask', JSON.stringify(taskDetails));
     
     tasksToDo.push(taskDetails);
@@ -41,6 +40,7 @@ export function newToDoObj (e) {
     taskCounter += 1;
 
     addNewForm.reset();
+    addNewForm.title.focus();
     renderToDos();
 }
 
