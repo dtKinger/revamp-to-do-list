@@ -16,10 +16,12 @@ global.taskCounter = 0; // Ignore count on the dummy cards. keep taskCounter
  /* =================== \
 |       Initialize       |
  \ =================== */
-
+console.log(taskCounter); // 0, good
 loadFromLocalStorage(); // 
+console.log(taskCounter); // null, bad.
 renderToDos();
 renderToDones();
+
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -35,11 +37,14 @@ renderToDones();
 
 function loadFromLocalStorage () {
   
-  if (localStorage.taskCounter){
-    taskCounter = localStorage.getItem(parseInt('taskCounter'));
-  } else {
+  if (localStorage.getItem(taskCounter) != undefined){
+    taskCounter = localStorage.getItem('taskCounter');
+    console.log(taskCounter);
+    
+  } else if (localStorage.taskCounter == undefined || localStorage.taskCounter == null || typeof localStorage == 'string'){
     taskCounter = 0;
   }
+  console.log(taskCounter);
   
   
   if (localStorage.length > 0) {

@@ -31,13 +31,17 @@ export function newToDoObj (e) {
 
     // create newTask with a unique Key number. Stringify the whole object.
     newTask = newTask + taskCounter;
+    console.log(taskCounter);
     localStorage.setItem('newTask', JSON.stringify(taskDetails));
+    console.log(taskCounter);
     
     tasksToDo.push(taskDetails);
 
     
     localStorage.setItem('taskCounter', taskCounter);
+    console.log(taskCounter);
     taskCounter += 1;
+    console.log(taskCounter);
 
     addNewForm.reset();
     addNewForm.title.focus();
