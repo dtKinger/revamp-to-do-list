@@ -1,5 +1,5 @@
 import { taskCounter } from "./globals.js"
-import { addToDo, newTask } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
+import { addToDo, newTask, clearPlaceholderCards } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
 import { renderToDos, tasksToDo } from "./to-do";
 import { renderToDones, completedTasks } from "./to-dones"; 
 
@@ -12,9 +12,12 @@ export const main = document.getElementById('main');
  /* =================== \
 |       Initialize       |
  \ =================== */
-loadFromLocalStorage(); // 
+loadFromLocalStorage(); //
+
+if (localStorage.length == 0){
 renderToDos();
 renderToDones();
+}
 
 
  /* =================== \
@@ -30,31 +33,24 @@ renderToDones();
 // }
 
 function loadFromLocalStorage () {
-  
-  if (localStorage.getItem(taskCounter) != undefined){
-    taskCounter = localStorage.getItem('taskCounter');
-    
-  } else if (localStorage.taskCounter == undefined || localStorage.taskCounter == null || typeof localStorage == 'string'){
-    taskCounter = 0;
+
+  // Set current value of taskCounter
+  if (localStorage.taskCounter){
+    global.taskCounter = localStorage.getItem('taskCounter');
+  } else if (!localStorage.taskCounter){
+    global.taskCounter = 0;
   }
   
-  
   if (localStorage.length > 0) {
-    // empty my arrays
-
-    if (newTask){
+    
+    // generate cards from localStorage
+    
     for (let i = 0; i < localStorage.length; i += 1){
       let loadedTask = localStorage.getItem(JSON.parse(newTask[i]));
       console.log(loadedTask);
-
     }
   }
-
-  } else {
-    // loadDefaults();
-  }
 }
-loadFromLocalStorage();
 
 
  /* =================== \
