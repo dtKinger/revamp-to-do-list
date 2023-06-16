@@ -1,4 +1,3 @@
-import { taskCounter } from "./globals.js"
 import { addToDo, newTask, clearPlaceholderCards } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
 import { renderToDos, tasksToDo } from "./to-do";
 import { renderToDones, completedTasks } from "./to-dones"; 
@@ -14,10 +13,8 @@ export const main = document.getElementById('main');
  \ =================== */
 loadFromLocalStorage(); //
 
-if (localStorage.length == 0){
 renderToDos();
 renderToDones();
-}
 
 
  /* =================== \
@@ -41,10 +38,10 @@ function loadFromLocalStorage () {
     global.taskCounter = 0;
   }
   
-  if (localStorage.length > 0) {
+  if (localStorage.length > 0 && (tasksToDo.length > 0 || completedTasks.length > 0)) {
+    console.log(tasksToDo);
     
     // generate cards from localStorage
-    
     for (let i = 0; i < localStorage.length; i += 1){
       let loadedTask = localStorage.getItem(JSON.parse(newTask[i]));
       console.log(loadedTask);
@@ -64,5 +61,7 @@ window.addEventListener('click', (e) => {
   };
 });
 
-
-
+// Build a master array for all tasks.
+// Add the concept of 'Location' to a task.
+// Store location property in local storage
+// Build arrays by filtering filtering a master array into two

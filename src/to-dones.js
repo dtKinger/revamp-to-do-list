@@ -1,23 +1,30 @@
+import { allTasks } from './globals.js';
 import { refreshTruncate, toDos, toDones } from './truncate.js'
 import { toDoneList } from "./index.js";
 import { tasksToDo } from "./to-do.js";
 
-export let completedTasks = [
-  {
-    "title": "Make Tic Tac Toe game",
-    "description": "Use IIFE's to modularize your code. Learn about 2D arrays and implement game-winning logic.",
-    "priority": "High",
-    "dueDate": "2023-12-05",
-    "createdAt": "2022-02-14"
-  },
-  {
-    "title": "Build Calculator in Vanilla JS",
-    "description": "Without using the calc() function, build a calculator that stores values to memory and displays answer on screen.",
-    "priority": "Medium",
-    "dueDate": "2023-12-06",
-    "createdAt": "2022-12-31"
-  },
-];
+export let completedTasks = [];
+
+if (localStorage.length == 0){
+  completedTasks = [
+    {
+      "title": "Make Tic Tac Toe game",
+      "description": "Use IIFE's to modularize your code. Learn about 2D arrays and implement game-winning logic.",
+      "priority": "High",
+      "dueDate": "2023-12-05",
+      "createdAt": "2022-02-14"
+    },
+    {
+      "title": "Build Calculator in Vanilla JS",
+      "description": "Without using the calc() function, build a calculator that stores values to memory and displays answer on screen.",
+      "priority": "Medium",
+      "dueDate": "2023-12-06",
+      "createdAt": "2022-12-31"
+    },
+  ];
+} else {
+  completedTasks = [];
+}
 
 export function renderToDones () {
 

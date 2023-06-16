@@ -1,4 +1,3 @@
-import { taskCounter } from "./globals.js"
 import { toDoList, toDoneList, topNav } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
 
@@ -9,12 +8,13 @@ export const addNewForm = document.getElementById('add-new-to-do');
 export let newTask = '';
 
 class Task {
-  constructor (title, description, priority, dueDate, createdAt){
+  constructor (title, description, priority, dueDate, createdAt, location){
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.dueDate = dueDate;
     this.createdAt = createdAt;
+    this.location = location;
   }  
 }
 
@@ -28,8 +28,9 @@ export function newToDoObj (e) {
     let priority = document.getElementById('priority-select').value;
     let dueDate = document.getElementById('date-picker').value;
     let createdAt = new Date();
+    let location = 'todos';
 
-    let taskDetails = new Task(title, description, priority, dueDate, createdAt)
+    let taskDetails = new Task(title, description, priority, dueDate, createdAt, location)
 
     // create newTask with a unique Key number. Stringify the whole object.
     
@@ -44,20 +45,6 @@ export function newToDoObj (e) {
     addNewForm.querySelector('#title').focus();
     renderToDos();
 }
-
-// addNewForm.addEventListener('submit', newToDoObj);
-
-// export function newToDoObj (e) {
-//   e.preventDefault();
-//   let myFormData = new FormData(e.target);
-//   let formDataObj = {};
-//   myFormData.forEach((value, key) => (formDataObj[key] = value));
-//   let formDataObjWithDate = {...formDataObj, "createdAt": new Date().toDateString()} // Add meta data of the date created.
-//   // sortAll();
-//   tasksToDo[tasksToDo.length] = formDataObjWithDate;
-//   addNewForm.reset();
-//   renderToDos();
-// };
 
 addToDo.addEventListener('click', () => {
   if (!addNewForm.classList.contains('show')){
