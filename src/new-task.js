@@ -8,13 +8,14 @@ export const addNewForm = document.getElementById('add-new-to-do');
 export let newTask = '';
 
 class Task {
-  constructor (title, description, priority, dueDate, createdAt, location){
+  constructor (title, description, priority, dueDate, createdAt, location, id){
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.dueDate = dueDate;
     this.createdAt = createdAt;
     this.location = location;
+    this.id = id;
   }  
 }
 
@@ -29,14 +30,16 @@ export function newToDoObj (e) {
     let dueDate = document.getElementById('date-picker').value;
     let createdAt = new Date();
     let location = 'todos';
+    let id = taskCounter;
 
-    let taskDetails = new Task(title, description, priority, dueDate, createdAt, location)
+    let taskDetails = new Task(title, description, priority, dueDate, createdAt, location, id)
 
     // create newTask with a unique Key number. Stringify the whole object.
     
     localStorage.setItem('newTask' + global.taskCounter, JSON.stringify(taskDetails));
     
-    tasksToDo.push(taskDetails);
+    // tasksToDo.push(taskDetails); // refactor this into Master array funnel
+    allTasks.push(taskDetails); // hm, I don't need to do global.allTasks like with taskCounter??
 
     localStorage.setItem('taskCounter', global.taskCounter);
     global.taskCounter += 1;

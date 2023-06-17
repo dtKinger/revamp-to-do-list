@@ -1,4 +1,9 @@
-global.taskCounter = 0;
+
+if (localStorage.taskCounter){
+  global.taskCounter = localStorage.getItem(taskCounter);
+} else { 
+  global.taskCounter = 0;
+}
 
 // Ignore count on the dummy cards. keep taskCounter 
 // equal to the number of items created and incremented.
@@ -6,3 +11,5 @@ global.taskCounter = 0;
 // Match the index in those arrays. Use this number for localStorage only.
 
 global.allTasks = [];
+
+
