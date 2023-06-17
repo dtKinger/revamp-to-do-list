@@ -1,4 +1,4 @@
-import { toDoList, toDoneList, topNav } from "./index.js";
+import { toDoList, toDoneList, topNav, assignToArrays } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
@@ -46,6 +46,7 @@ export function newToDoObj (e) {
 
     addNewForm.reset();
     addNewForm.querySelector('#title').focus();
+    assignToArrays();
     renderToDos();
 }
 

@@ -1,6 +1,5 @@
-import { allTasks } from './globals.js';
 import { refreshTruncate, toDos, toDones } from "./truncate.js";
-import { toDoList } from "./index.js";
+import { toDoList, assignToArrays } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
 export let tasksToDo = [];

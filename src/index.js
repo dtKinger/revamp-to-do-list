@@ -39,12 +39,12 @@ function loadFromLocalStorage () {
   }
   
   if (localStorage.length > 0 && (tasksToDo.length > 0 || completedTasks.length > 0)) {
-    console.log(tasksToDo);
     
     // generate cards from localStorage
-    for (let i = 0; i < localStorage.length; i += 1){
-      let loadedTask = localStorage.getItem(JSON.parse(newTask[i]));
-      console.log(loadedTask);
+    let storedTasks = {...localStorage};
+
+    for (let i = 0; i < storedTasks.length; i += 1){
+      let loadedTask = storedTasks.getItem(JSON.parse(storedTasks[i]));
     }
   }
 }
@@ -65,3 +65,22 @@ window.addEventListener('click', (e) => {
 // Add the concept of 'Location' to a task.
 // Store location property in local storage
 // Build arrays by filtering filtering a master array into two
+
+export function assignToArrays () {
+
+  console.log(Object.entries(global.allTasks));
+  
+  
+  for (let i = 0; i < global.allTasks.length; i +=1){
+    console.log(allTasks[i]);
+    // if (task.location == 'todos'){
+    //   tasksToDo.push(JSON.stringify(task))
+    // } else if (task.location == 'todones'){
+    //   completedTasks.push(JSON.stringify(task));
+    //   // console.log(task.key)
+    //   localStorage.setItem(task.key, task.value)
+    // }
+  }
+}
+assignToArrays();
+

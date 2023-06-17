@@ -1,6 +1,5 @@
-
 if (localStorage.taskCounter){
-  global.taskCounter = localStorage.getItem(taskCounter);
+  global.taskCounter = parseInt(localStorage.getItem('taskCounter'));
 } else { 
   global.taskCounter = 0;
 }
@@ -10,6 +9,10 @@ if (localStorage.taskCounter){
 // Keep in mind, I have two arrays, To Do and To Dones, so this number won't
 // Match the index in those arrays. Use this number for localStorage only.
 
-global.allTasks = [];
+if (localStorage.length > 0){
+  global.allTasks = {...localStorage}; 
+} else {
+  global.allTasks = [];
+}
 
 
