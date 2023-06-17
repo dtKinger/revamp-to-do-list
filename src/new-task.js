@@ -1,3 +1,4 @@
+import { allTasks } from "./globals.js"
 import { toDoList, toDoneList, topNav, assignToArrays } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
 

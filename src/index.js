@@ -72,7 +72,7 @@ export function assignToArrays () {
   
   
   for (let i = 0; i < global.allTasks.length; i +=1){
-    console.log(allTasks[i]);
+    console.log(global.allTasks[i]);
     // if (task.location == 'todos'){
     //   tasksToDo.push(JSON.stringify(task))
     // } else if (task.location == 'todones'){
