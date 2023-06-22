@@ -11,8 +11,8 @@ export const main = document.getElementById('main');
  /* =================== \
 |       Initialize       |
  \ =================== */
-loadFromLocalStorage(); //
 
+assignToArraysOnLoad();
 renderToDos();
 renderToDones();
 
@@ -29,29 +29,6 @@ renderToDones();
   
 // }
 
-function loadFromLocalStorage () {
-
-  // Set current value of taskCounter
-  if (localStorage.taskCounter){
-    global.taskCounter = localStorage.getItem('taskCounter');
-  } else if (!localStorage.taskCounter){
-    global.taskCounter = 0;
-  }
-
-  // Filter allTasks into tasksToDo and compeltedTasks.
-  
-  if (localStorage.length > 0 && (tasksToDo.length > 0 || completedTasks.length > 0)) {
-    
-    // generate cards from localStorage
-    let storedTasks = object.clone(allTasks);
-    console.log('storedTasks represents:');
-    console.info(storedTasks);
-
-    for (let i = 0; i < storedTasks.length; i += 1){
-      let loadedTask = storedTasks.getItem(JSON.parse(storedTasks[i]));
-    }
-  }
-}
 
 
  /* =================== \
@@ -62,6 +39,12 @@ window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore')){
     renderToDos();
     renderToDones();
+    console.log('tasksToDo represents: ');
+    console.info(tasksToDo);
+    console.log('completedTasks represents:')
+    console.info(completedTasks);
+    console.log('allTasks represents:')
+    console.info(allTasks);
   };
 });
 
@@ -70,43 +53,19 @@ window.addEventListener('click', (e) => {
 // Store location property in local storage
 // Build arrays by filtering filtering a master array into two
 
-export function assignToArrays () {
-
+export function assignToArraysOnLoad () {
+  // [...global.allTasks] = Object.entries(localStorage); // from global.js
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
       // use it.
-    let task = JSON.parse(allTasks[i][1])
+    let task = JSON.parse(allTasks[i][1]) // all tasks is an array of arrays. Grab the entry [i] then
+    // grab it's second property [1] which is the object information
     if (task.location === 'todos'){
       tasksToDo.push(task);
-    } else if (task.location === 'todones'){
-      completedTasks.push(task);
+      } else if (task.location === 'todones'){
+        completedTasks.push(task);
+      }
     }
   }
-    
-    
-  
-  // console.log(task);
-    // If there is a title property (i.e. Ignore taskCounter key/value)
-    // if (task.location){
-    //   if (task.location == 'todos'){
-    //     console.log('It reads the .location')
-    //       tasksToDo.push(JSON.stringify(task))
-    //     } else if (task.location == 'todones'){
-    //       completedTasks.push(JSON.stringify(task));
-    //       // console.log(task.key)
-    //       localStorage.setItem(task.key, task.value)
-    //     }
-    //   }
-    }
-  console.log('allTasks represents:')
-  console.info(allTasks)
-
-  console.log('tasksToDo represents:')
-  console.info(tasksToDo)
-
-  console.log('completedTasks represents:')
-  console.info(completedTasks);
-  
 }
-assignToArrays();
 
