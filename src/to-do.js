@@ -3,27 +3,14 @@ import { toDoList, assignToArrays } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
 export let tasksToDo = [];
-
 if (localStorage.length == 0){
-  tasksToDo = [
-    {
-      "title": "Make To Do App",
-      "description": "Using JS modules and SOLID principles, build a useful To Do application.",
-      "priority": "Medium",
-      "dueDate": "2023-12-06",
-      "createdAt": "2023-06-05"
-    },
-    {
-      "title": "Create a library app",
-      "description": "Use object constructors to add books to a library, optionally marking them as read. Allow use to withdraw (delete) books.",
-      "priority": "Low",
-      "dueDate": "2023-12-06",
-      "createdAt": "2023-01-01"
-    },
-  ];
+let tasksToDo = [];
   } else {
-  tasksToDo = [];
-};
+    tasksToDo = allTasks.filter(item => item.location == 'todos');
+    console.log('tasksToDo represents: ');
+    console.info(tasksToDo);
+  };
+
 
 export function renderToDos () {
   

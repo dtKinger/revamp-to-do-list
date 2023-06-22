@@ -37,11 +37,15 @@ function loadFromLocalStorage () {
   } else if (!localStorage.taskCounter){
     global.taskCounter = 0;
   }
+
+  // Filter allTasks into tasksToDo and compeltedTasks.
   
   if (localStorage.length > 0 && (tasksToDo.length > 0 || completedTasks.length > 0)) {
     
     // generate cards from localStorage
-    let storedTasks = {...localStorage};
+    let storedTasks = object.clone(allTasks);
+    console.log('storedTasks represents:');
+    console.info(storedTasks);
 
     for (let i = 0; i < storedTasks.length; i += 1){
       let loadedTask = storedTasks.getItem(JSON.parse(storedTasks[i]));
@@ -68,27 +72,37 @@ window.addEventListener('click', (e) => {
 
 export function assignToArrays () {
 
-  let iterableAllTasks = Object.entries(allTasks);
-
-  iterableAllTasks.forEach((task, index) => {
+  for (let i = 0; i < allTasks.length; i += 1){
+    if (typeof allTasks[i][1] == 'object'){
+      // console.log(JSON.parse(allTasks[i][1]));
+      console.log('Yes, JSON')
+    // let task = JSON.parse(allTasks[i][1])
+  }
     
-    if (task.location == 'todos'){
-      console.log('It reads the .location')
-        tasksToDo.push(JSON.stringify(task))
-      } else if (task.location == 'todones'){
-        completedTasks.push(JSON.stringify(task));
-        // console.log(task.key)
-        localStorage.setItem(task.key, task.value)
-      }
-  });
+    
+  
+  // console.log(task);
+    // If there is a title property (i.e. Ignore taskCounter key/value)
+    // if (task.location){
+    //   if (task.location == 'todos'){
+    //     console.log('It reads the .location')
+    //       tasksToDo.push(JSON.stringify(task))
+    //     } else if (task.location == 'todones'){
+    //       completedTasks.push(JSON.stringify(task));
+    //       // console.log(task.key)
+    //       localStorage.setItem(task.key, task.value)
+    //     }
+    //   }
+    }
   console.log('allTasks represents:')
-  console.info(iterableAllTasks)
+  console.info(allTasks)
 
   console.log('tasksToDo represents:')
   console.info(tasksToDo)
 
   console.log('completedTasks represents:')
   console.info(completedTasks);
+  
 }
 assignToArrays();
 

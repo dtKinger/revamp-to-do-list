@@ -10,9 +10,11 @@ if (localStorage.taskCounter){
 // Match the index in those arrays. Use this number for localStorage only.
 
 if (localStorage.length > 0){
-  global.allTasks = Object.entries(localStorage); 
+  [...global.allTasks] = Object.entries(localStorage);
 } else {
   global.allTasks = [];
 }
 
 
+// 
+// JSON.parse(allTasks[0][1]).title // 'Task 1'
