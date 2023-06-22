@@ -35,17 +35,11 @@ export function newToDoObj (e) {
 
     let taskDetails = new Task(title, description, priority, dueDate, createdAt, location, id)
 
-    // create newTask with a unique Key number. Stringify the whole object.
+    localStorage.setItem('taskCounter', global.taskCounter);
+    global.taskCounter += 1;
     
     // parseInt half worked - no longer concats string.
     localStorage.setItem('newTask' + parseInt(global.taskCounter), JSON.stringify(taskDetails));
-    
-    // tasksToDo.push(taskDetails); // refactor this into Master array funnel
-    
-    // Maybe call global.<name> when Getting and import then call <name> when setting.
-
-    localStorage.setItem('taskCounter', global.taskCounter);
-    global.taskCounter += 1;
 
     addNewForm.reset();
     addNewForm.querySelector('#title').focus();
