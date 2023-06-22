@@ -1,5 +1,5 @@
 import { refreshTruncate, toDos, toDones } from './truncate.js'
-import { toDoneList, assignToArrays } from "./index.js";
+import { toDoneList, assignToArraysOnLoad, reAssignToArrays } from "./index.js";
 import { tasksToDo } from "./to-do.js";
 
 export let completedTasks = [];
@@ -52,6 +52,7 @@ export function renderToDones () {
   restoreBtns.forEach( (button, index) => {
     button.addEventListener('click', (e) => {
       let movedTask = completedTasks.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
+      movedTask.location = 'todos';
       tasksToDo.push(movedTask);
       e.target.parentElement.parentElement.parentElement.parentElement.remove(); // Delete from the original position
     })

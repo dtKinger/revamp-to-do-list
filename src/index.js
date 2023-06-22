@@ -54,7 +54,7 @@ window.addEventListener('click', (e) => {
 // Build arrays by filtering filtering a master array into two
 
 export function assignToArraysOnLoad () {
-  // [...global.allTasks] = Object.entries(localStorage); // from global.js
+  // [...allTasks] = Object.entries(localStorage); // from global.js
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
       // use it.
@@ -69,3 +69,27 @@ export function assignToArraysOnLoad () {
   }
 }
 
+export function reAssignToArrays () {
+  getLocalStorage();
+  for (let i = 0; i < allTasks.length; i += 1){
+    if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
+      // use it.
+    let task = JSON.parse(allTasks[i][1]) // all tasks is an array of arrays. Grab the entry [i] then
+    // grab it's second property [1] which is the object information
+    if (task.location === 'todos'){
+      tasksToDo.push(task);
+      } else if (task.location === 'todones'){
+        completedTasks.push(task);
+      }
+    }
+  }
+  
+}
+
+export function getLocalStorage () {
+  [...allTasks] = Object.entries(localStorage);
+}
+
+export function setLocalStorage () {
+
+}

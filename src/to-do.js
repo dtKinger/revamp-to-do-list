@@ -1,16 +1,15 @@
 import { refreshTruncate, toDos, toDones } from "./truncate.js";
-import { toDoList, assignToArrays } from "./index.js";
+import { toDoList, assignToArraysOnLoad, reAssignToArrays } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
 export let tasksToDo = [];
-if (localStorage.length == 0){
-let tasksToDo = [];
+  if (localStorage.length == 0){
+    let tasksToDo = [];
   } else {
-    tasksToDo = allTasks.filter(item => item.location == 'todos');
+    let tasksToDo = allTasks.filter(item => item.location == 'todos');
     console.log('tasksToDo represents: ');
     console.info(tasksToDo);
   };
-
 
 export function renderToDos () {
   
@@ -62,6 +61,11 @@ export function renderToDos () {
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
+      // change it's location property
+      movedTask.location = 'todones';
+      // let id = movedTask.id;
+      // localStorage.setItem(e.target[id], movedTask);
+      localStorage.setItem('newTask1', JSON.stringify(movedTask));
       completedTasks.push(movedTask);
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
     })
@@ -74,3 +78,7 @@ export function renderToDos () {
   }
 
 };
+
+export function emptyTasksToDo () {
+  tasksToDo = [];
+}

@@ -1,6 +1,6 @@
 import { allTasks } from "./globals.js"
-import { toDoList, toDoneList, topNav, assignToArrays } from "./index.js";
-import { tasksToDo, renderToDos } from "./to-do.js"
+import { toDoList, toDoneList, topNav, assignToArrays, assignToArraysOnLoad, reAssignToArrays } from "./index.js";
+import { tasksToDo, renderToDos, emptyTasksToDo } from "./to-do.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
@@ -48,7 +48,9 @@ export function newToDoObj (e) {
 
     addNewForm.reset();
     addNewForm.querySelector('#title').focus();
-    assignToArrays();
+    emptyTasksToDo();
+    // shuffle the arrays
+    reAssignToArrays();
     renderToDos();
 }
 
