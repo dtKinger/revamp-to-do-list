@@ -72,7 +72,6 @@ export function renderToDos () {
   })
   // Checkmarks
   let checkmarks = document.querySelectorAll('.move-todones');
-
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array

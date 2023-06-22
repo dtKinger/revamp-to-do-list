@@ -41,6 +41,7 @@ export function newToDoObj (e) {
     
     // tasksToDo.push(taskDetails); // refactor this into Master array funnel
     allTasks.push(taskDetails); // hm, I don't need to do global.allTasks like with taskCounter??
+    // Maybe call global.<name> when Getting and import then call <name> when setting.
 
     localStorage.setItem('taskCounter', global.taskCounter);
     global.taskCounter += 1;

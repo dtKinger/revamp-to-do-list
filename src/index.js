@@ -68,19 +68,27 @@ window.addEventListener('click', (e) => {
 
 export function assignToArrays () {
 
-  console.log(Object.entries(global.allTasks));
-  
-  
-  for (let i = 0; i < global.allTasks.length; i +=1){
-    console.log(global.allTasks[i]);
-    // if (task.location == 'todos'){
-    //   tasksToDo.push(JSON.stringify(task))
-    // } else if (task.location == 'todones'){
-    //   completedTasks.push(JSON.stringify(task));
-    //   // console.log(task.key)
-    //   localStorage.setItem(task.key, task.value)
-    // }
-  }
+  let iterableAllTasks = Object.entries(allTasks);
+
+  iterableAllTasks.forEach((task, index) => {
+    
+    if (task.location == 'todos'){
+      console.log('It reads the .location')
+        tasksToDo.push(JSON.stringify(task))
+      } else if (task.location == 'todones'){
+        completedTasks.push(JSON.stringify(task));
+        // console.log(task.key)
+        localStorage.setItem(task.key, task.value)
+      }
+  });
+  console.log('allTasks represents:')
+  console.info(iterableAllTasks)
+
+  console.log('tasksToDo represents:')
+  console.info(tasksToDo)
+
+  console.log('completedTasks represents:')
+  console.info(completedTasks);
 }
 assignToArrays();
 
