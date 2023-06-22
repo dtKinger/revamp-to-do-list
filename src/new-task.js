@@ -1,6 +1,6 @@
 import { allTasks } from "./globals.js"
 import { toDoList, toDoneList, topNav, assignToArrays, assignToArraysOnLoad, reAssignToArrays } from "./index.js";
-import { tasksToDo, renderToDos, emptyTasksToDo } from "./to-do.js"
+import { tasksToDo, renderToDos, emptyTasksToDo, buildTasksToDo } from "./to-do.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
@@ -37,10 +37,11 @@ export function newToDoObj (e) {
 
     // create newTask with a unique Key number. Stringify the whole object.
     
-    localStorage.setItem('newTask' + global.taskCounter, JSON.stringify(taskDetails));
+    // parseInt half worked - no longer concats string.
+    localStorage.setItem('newTask' + parseInt(global.taskCounter), JSON.stringify(taskDetails));
     
     // tasksToDo.push(taskDetails); // refactor this into Master array funnel
-    global.allTasks.push(taskDetails); // hm, I don't need to do global.allTasks like with taskCounter??
+    
     // Maybe call global.<name> when Getting and import then call <name> when setting.
 
     localStorage.setItem('taskCounter', global.taskCounter);

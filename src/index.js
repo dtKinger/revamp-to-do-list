@@ -1,6 +1,6 @@
 import { addToDo, newTask, clearPlaceholderCards } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
-import { renderToDos, tasksToDo } from "./to-do";
-import { renderToDones, completedTasks } from "./to-dones"; 
+import { renderToDos, tasksToDo, buildTasksToDo } from "./to-do";
+import { renderToDones, completedTasks, buildCompletedTasks } from "./to-dones"; 
 
 export const topNav = document.getElementById('top-nav');
 export const toDoList = document.getElementById('to-dos');
@@ -15,7 +15,6 @@ export const main = document.getElementById('main');
 assignToArraysOnLoad();
 renderToDos();
 renderToDones();
-
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -37,6 +36,8 @@ renderToDones();
 
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore')){
+    buildTasksToDo();
+    buildCompletedTasks();
     renderToDos();
     renderToDones();
     console.log('tasksToDo represents: ');
@@ -87,9 +88,10 @@ export function reAssignToArrays () {
 }
 
 export function getLocalStorage () {
+  // Rebuild the allTasks array
   [...allTasks] = Object.entries(localStorage);
 }
 
-export function setLocalStorage () {
+// export function setLocalStorage () {
 
-}
+// }

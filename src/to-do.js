@@ -1,15 +1,20 @@
 import { refreshTruncate, toDos, toDones } from "./truncate.js";
-import { toDoList, assignToArraysOnLoad, reAssignToArrays } from "./index.js";
+import { toDoList, assignToArraysOnLoad, reAssignToArrays, getLocalStorage } from "./index.js";
 import { completedTasks } from "./to-dones.js";
 
 export let tasksToDo = [];
+
+export function buildTasksToDo () {
   if (localStorage.length == 0){
     let tasksToDo = [];
   } else {
+    getLocalStorage();
     let tasksToDo = allTasks.filter(item => item.location == 'todos');
     console.log('tasksToDo represents: ');
     console.info(tasksToDo);
   };
+}
+buildTasksToDo();
 
 export function renderToDos () {
   

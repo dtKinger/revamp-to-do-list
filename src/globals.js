@@ -15,6 +15,3 @@ if (localStorage.length > 0){
   global.allTasks = [];
 }
 
-
-// 
-// JSON.parse(allTasks[0][1]).title // 'Task 1'
