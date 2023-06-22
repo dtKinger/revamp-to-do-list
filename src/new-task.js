@@ -24,6 +24,9 @@ class Task {
 addNewForm.addEventListener('submit', newToDoObj);
 export function newToDoObj (e) {
     e.preventDefault();
+    global.taskCounter += 1;
+    localStorage.setItem('taskCounter', global.taskCounter);
+    
     //capture input values.
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
@@ -35,8 +38,8 @@ export function newToDoObj (e) {
 
     let taskDetails = new Task(title, description, priority, dueDate, createdAt, location, id)
 
-    localStorage.setItem('taskCounter', global.taskCounter);
-    global.taskCounter += 1;
+    
+  
     
     // parseInt half worked - no longer concats string.
     localStorage.setItem('newTask' + parseInt(global.taskCounter), JSON.stringify(taskDetails));
