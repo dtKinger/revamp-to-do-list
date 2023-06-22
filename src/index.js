@@ -73,10 +73,14 @@ window.addEventListener('click', (e) => {
 export function assignToArrays () {
 
   for (let i = 0; i < allTasks.length; i += 1){
-    if (typeof allTasks[i][1] == 'object'){
-      // console.log(JSON.parse(allTasks[i][1]));
-      console.log('Yes, JSON')
-    // let task = JSON.parse(allTasks[i][1])
+    if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
+      // use it.
+    let task = JSON.parse(allTasks[i][1])
+    if (task.location === 'todos'){
+      tasksToDo.push(task);
+    } else if (task.location === 'todones'){
+      completedTasks.push(task);
+    }
   }
     
     
