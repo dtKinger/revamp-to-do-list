@@ -4,17 +4,8 @@ import { tasksToDo } from "./to-do.js";
 
 export let completedTasks = [];
 
-export function buildCompletedTasks () {
-  if (localStorage.length == 0){
-    completedTasks = [];
-  } else {
-    getLocalStorage();
-    completedTasks = allTasks.filter(item => item.location == 'todones');
-  }
-}
-
 export function renderToDones () {
-
+  reAssignToArrays();
   // Dump exisiting
   toDoneList.innerHTML = `
   <h2 class="section-title">TO DONEs</h2>

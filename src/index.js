@@ -1,6 +1,6 @@
 import { addToDo, newTask, clearPlaceholderCards } from "./new-task"; // Add ToDo button doesn't do anything if this isn't included?
-import { renderToDos, tasksToDo, buildTasksToDo } from "./to-do";
-import { renderToDones, completedTasks, buildCompletedTasks } from "./to-dones"; 
+import { renderToDos, tasksToDo, emptyTasksToDo } from "./to-do";
+import { renderToDones, completedTasks, emptyCompletedTasks } from "./to-dones"; 
 
 export const topNav = document.getElementById('top-nav');
 export const toDoList = document.getElementById('to-dos');
@@ -12,11 +12,9 @@ export const main = document.getElementById('main');
 |       Initialize       |
  \ =================== */
 
-// assignToArraysOnLoad();
-buildTasksToDo();
-// buildCompletedTasks();
-// renderToDos();
-// renderToDones();
+assignToArraysOnLoad();
+renderToDos();
+renderToDones();
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -38,11 +36,9 @@ buildTasksToDo();
 
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore')){
-    buildTasksToDo();
-    buildCompletedTasks();
     renderToDos();
     renderToDones();
-    console.log('tasksToDo represents: ');
+    console.log('tasksToDo represents:');
     console.info(tasksToDo);
     console.log('completedTasks represents:')
     console.info(completedTasks);
@@ -73,6 +69,8 @@ export function assignToArraysOnLoad () {
 }
 
 export function reAssignToArrays () {
+  emptyTasksToDo();
+  emptyCompletedTasks();
   getLocalStorage();
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
@@ -86,7 +84,6 @@ export function reAssignToArrays () {
       }
     }
   }
-  
 }
 
 export function getLocalStorage () {
