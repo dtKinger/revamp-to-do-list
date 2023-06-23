@@ -53,27 +53,27 @@ export function renderToDos () {
   let checkmarks = document.querySelectorAll('.move-todones');
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
+
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
+      
+      function getIndex () {
+        // Match up two arrays by Id.
+        let correspondingTask = allTasks.find(item => JSON.parse(item[1]).id == movedTask.id)
+        console.log(correspondingTask);
+        let deleteIndex = allTasks.indexOf(correspondingTask)
+        console.log(deleteIndex) // this works.
+      }
+
       // change it's location property
-      // movedTask.location = 'todones';
+      movedTask.location = 'todones';
 
-      localStorage.setItem(movedTask.location, 'todones');
-      // console.info(movedTask);
-      
-      // Match up two arrays by Id.
-      let correspondingTask = allTasks.find(item => JSON.parse(item[1]).id == movedTask.id)
-      console.log(correspondingTask);
-      let deleteIndex = allTasks.indexOf(correspondingTask)
-      console.log(deleteIndex) // this works.
-      // Set the local storage
-      
-      // Delete the tasksToDo version
-
-      // Re-render handled by the global click.
+      localStorage.setItem('newTask' + getIndex(), JSON.stringify(movedTask));
 
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
     })
   })
+
+
 
   // Truncate buttons
 
