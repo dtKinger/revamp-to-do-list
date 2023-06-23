@@ -73,6 +73,7 @@ export function reAssignToArrays () {
   emptyTasksToDo();
   emptyCompletedTasks();
   getLocalStorage();
+  
   // Then rebuild tasksToDo and completedTasks
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter

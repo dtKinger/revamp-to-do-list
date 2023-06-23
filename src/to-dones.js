@@ -5,7 +5,6 @@ import { tasksToDo } from "./to-do.js";
 export let completedTasks = [];
 
 export function renderToDones () {
-  reAssignToArrays();
   // Dump exisiting
   toDoneList.innerHTML = `
   <h2 class="section-title">TO DONEs</h2>

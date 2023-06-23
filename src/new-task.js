@@ -1,4 +1,5 @@
 import { allTasks } from "./globals.js"
+import { reAssignToArrays } from "./index.js";
 import { tasksToDo, renderToDos } from "./to-do.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
@@ -44,6 +45,7 @@ export function newToDoObj (e) {
     addNewForm.querySelector('#title').focus();
 
     // shuffle the arrays
+    reAssignToArrays();
     renderToDos();
 }
 
