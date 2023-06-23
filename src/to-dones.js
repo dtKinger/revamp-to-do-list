@@ -10,11 +10,8 @@ export function buildCompletedTasks () {
   } else {
     getLocalStorage();
     completedTasks = allTasks.filter(item => item.location == 'todones');
-    console.log('completedTasks represents:')
-    console.info(completedTasks);
   }
 }
-buildCompletedTasks();
 
 export function renderToDones () {
 

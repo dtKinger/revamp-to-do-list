@@ -5,19 +5,19 @@ import { completedTasks } from "./to-dones.js";
 export let tasksToDo = [];
 
 export function buildTasksToDo () {
-  if (localStorage.length == 0){
-    let tasksToDo = [];
+  if (localStorage.length === 0){
+    tasksToDo = [];
   } else {
     getLocalStorage();
-    let tasksToDo = allTasks.filter(item => item.location == 'todos');
-    console.log('tasksToDo represents: ');
+    tasksToDo = allTasks.filter(item => {
+      return JSON.parse(item[1]).location == 'todos';
+      // if the 2nd field ([1]) has .location = todos, get it.
+    });
     console.info(tasksToDo);
   };
 }
-buildTasksToDo();
 
 export function renderToDos () {
-  
   // Dump existing
   toDoList.innerHTML = `
   <h2 class="section-title">TO DOs</h2>

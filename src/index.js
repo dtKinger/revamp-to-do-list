@@ -12,9 +12,11 @@ export const main = document.getElementById('main');
 |       Initialize       |
  \ =================== */
 
-assignToArraysOnLoad();
-renderToDos();
-renderToDones();
+// assignToArraysOnLoad();
+buildTasksToDo();
+// buildCompletedTasks();
+// renderToDos();
+// renderToDones();
 
  /* =================== \
 |      END PAGE LOAD     |
