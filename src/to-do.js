@@ -6,7 +6,6 @@ export let tasksToDo = [];
 
 export function renderToDos () {
   // Dump existing
-  reAssignToArrays();
   toDoList.innerHTML = `
   <h2 class="section-title">TO DOs</h2>
   <div class="sort">
@@ -45,6 +44,7 @@ export function renderToDos () {
   let deleteBtns = document.querySelectorAll('.delete-btn');
   deleteBtns.forEach((button, index) => {
     button.addEventListener('click', (e) => {
+      console.log(index);
       tasksToDo.splice(index, 1) // don't need to reassign this.
       e.target.parentElement.parentElement.parentElement.remove();
     })
@@ -56,10 +56,19 @@ export function renderToDos () {
       let movedTask = tasksToDo.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
       // change it's location property
       movedTask.location = 'todones';
+      let correspondingTask = allTasks.find(item => JSON.parse(item[1]).id == movedTask.id)
+      console.log(correspondingTask);
+
+
       // let id = movedTask.id;
       // localStorage.setItem(e.target[id], movedTask);
-      localStorage.setItem('newTask1', JSON.stringify(movedTask));
-      completedTasks.push(movedTask);
+      // localStorage.setItem('newTask1', JSON.stringify(movedTask));
+      // completedTasks.push(movedTask);
+
+      // Update local Storage
+
+      // Re-render Screen
+
       e.target.parentElement.parentElement.parentElement.remove(); // Delete from the original position
     })
   })

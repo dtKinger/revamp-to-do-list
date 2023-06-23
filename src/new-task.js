@@ -38,7 +38,6 @@ export function newToDoObj (e) {
 
     let taskDetails = new Task(title, description, priority, dueDate, createdAt, location, id)
     
-    // parseInt half worked - no longer concats string.
     localStorage.setItem('newTask' + parseInt(global.taskCounter), JSON.stringify(taskDetails));
 
     addNewForm.reset();

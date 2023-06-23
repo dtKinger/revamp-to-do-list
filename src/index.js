@@ -36,6 +36,7 @@ renderToDones();
 
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore')){
+    reAssignToArrays();
     renderToDos();
     renderToDones();
     console.log('tasksToDo represents:');
@@ -72,6 +73,7 @@ export function reAssignToArrays () {
   emptyTasksToDo();
   emptyCompletedTasks();
   getLocalStorage();
+  // Then rebuild tasksToDo and completedTasks
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){ // If it cannot be parsed as an Int, i.e. not the taskCounter
       // use it.
