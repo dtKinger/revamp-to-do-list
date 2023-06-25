@@ -1,6 +1,7 @@
 import { allTasks } from "./globals.js"
 import { reAssignToArrays } from "./index.js";
-import { tasksToDo, renderToDos } from "./to-do.js"
+import { renderToDos } from "./to-do.js"
+import { renderTasks } from "./render-tasks.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
