@@ -1,11 +1,8 @@
 import { allTasks } from "./globals.js"
-import { reAssignToArrays } from "./index.js";
-import { renderToDos } from "./to-do.js"
 import { renderTasks } from "./render-tasks.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
-// export const submitNewToDo = document.getElementById('submit-new');
 
 export let newTask = '';
 
@@ -45,9 +42,7 @@ export function newToDoObj (e) {
     addNewForm.reset();
     addNewForm.querySelector('#title').focus();
 
-    // shuffle the arrays
-    reAssignToArrays();
-    renderToDos();
+    renderTasks();
 }
 
 addToDo.addEventListener('click', () => {
