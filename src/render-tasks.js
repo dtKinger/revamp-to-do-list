@@ -111,9 +111,6 @@ export function updateDeletebuttons(){
     button.addEventListener('click', (e) => {
       // remove from local Storage
       localStorage.removeItem(allTasks[index][0]);
-      // Do I need to remove it from allTasks array or not?
-      e.target.parentElement.parentElement.parentElement.remove();
-
     })
   })
 };
