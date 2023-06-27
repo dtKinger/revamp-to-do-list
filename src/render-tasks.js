@@ -91,6 +91,7 @@ export function renderTasks () {
         let hiddenRestoreBtn = document.createElement('div');
         hiddenRestoreBtn.classList = ('restore task-counter');
         toDoList.append(hiddenRestoreBtn);
+      };
     };
   };
 
