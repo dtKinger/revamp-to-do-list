@@ -63,8 +63,10 @@ export function renderTasks () {
     // the delete-btns with the localStorage array ordering.
     } else if (parseInt(allTasks[i][1])){
       let hiddenCounterDeleteBtn = document.createElement('div');
+      let hiddenCheckmarkBtn = document.createElement('div');
       hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
-      toDoList.appendChild(hiddenCounterDeleteBtn);
+      hiddenCheckmarkBtn.classList = ('move-todones task-counter');
+      toDoList.append(hiddenCounterDeleteBtn, hiddenCheckmarkBtn);
     // ignore the taskCounter which would parseInt as truthy
     } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
       // Build To Dones list
@@ -85,7 +87,10 @@ export function renderTasks () {
         </div>
       `
       toDoneList.appendChild(doneTask);
-      };
+      } else if (parseInt(allTasks[i][1])){
+        let hiddenRestoreBtn = document.createElement('div');
+        hiddenRestoreBtn.classList = ('restore task-counter');
+        toDoList.append(hiddenRestoreBtn);
     };
   };
 
@@ -103,10 +108,6 @@ export function updateDeletebuttons(){
   let deleteBtns = document.querySelectorAll('.delete-btn');
   deleteBtns.forEach((button, index) => {
     button.addEventListener('click', (e) => {
-      console.log(index);
-      console.log(allTasks[index])
-      console.log(allTasks[index][0])
-      console.log(allTasks[index][1])
       // remove from local Storage
       localStorage.removeItem(allTasks[index][0]);
       // Do I need to remove it from allTasks array or not?
