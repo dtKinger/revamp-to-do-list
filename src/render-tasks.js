@@ -120,7 +120,13 @@ export function updateCheckmarks () {
   let checkmarks = document.querySelectorAll('.move-todones');
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
-      JSON.parse(allTasks[index][1]).location = 'todones';
+      // Get it
+      let overwrite = JSON.parse(allTasks[index][1]);
+      // Transform it
+      overwrite.location = 'todones';
+      // Save it
+      localStorage.setItem(`${allTasks[index][0]}`, JSON.stringify(overwrite));
+      // localStorage.setItem(allTasks[index][1].location, 'todones')
       //saveToLocalStorage();
     })
   })
@@ -144,4 +150,10 @@ export function saveToLocalStorage () {
       localStorage.setItem(`${allTasks[i][0]}`, `${JSON.stringify(allTasks[i][1])}`)
     }
   }
+}
+
+export function updateAllButtons () {
+  updateCheckmarks();
+  updateDeletebuttons();
+  updateRestoreBtns();
 }

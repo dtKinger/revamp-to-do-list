@@ -1,5 +1,5 @@
 import { allTasks } from "./globals.js"
-import { renderTasks } from "./render-tasks.js"
+import { renderTasks, updateAllButtons } from "./render-tasks.js"
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
@@ -18,6 +18,12 @@ class Task {
   }  
 }
 
+
+addToDo.addEventListener('click', () => {
+  setTimeout(() => {
+    addNewForm.querySelector('#title').focus();
+  }, 50);
+});
 
 addNewForm.addEventListener('submit', newToDoObj);
 export function newToDoObj (e) {
@@ -43,6 +49,7 @@ export function newToDoObj (e) {
     addNewForm.querySelector('#title').focus();
 
     renderTasks();
+    updateAllButtons();
 }
 
 addToDo.addEventListener('click', () => {

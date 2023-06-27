@@ -1,4 +1,4 @@
-import { renderTasks, updateCheckmarks, updateDeletebuttons, updateRestoreBtns } from "./render-tasks.js"
+import { renderTasks, updateAllButtons } from "./render-tasks.js"
 import { addToDo } from "./new-task.js"
 
 export const topNav = document.getElementById('top-nav');
@@ -12,9 +12,7 @@ export const main = document.getElementById('main');
  \ =================== */
 
 renderTasks();
-updateCheckmarks();
-updateDeletebuttons();
-updateRestoreBtns();
+updateAllButtons();
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -37,9 +35,7 @@ updateRestoreBtns();
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore') || e.target.classList.contains('delete-btn')){
     renderTasks();
-    updateCheckmarks();
-    updateDeletebuttons();
-    updateRestoreBtns();
+    updateAllButtons();
     console.log('allTasks represents:')
     console.info(allTasks);
   };
