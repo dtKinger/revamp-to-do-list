@@ -439,3 +439,17 @@ a:hover{
   width: 240px;
   margin: 0 auto;
 }
+
+.visually-hidden {
+  position: fixed;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.task-counter {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
