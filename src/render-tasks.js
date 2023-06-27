@@ -59,6 +59,12 @@ export function renderTasks () {
       </div>
     `
     toDoList.appendChild(newTask);
+    // Make a vidusally hidden div and delete-btn to synchronize
+    // the delete-btns with the localStorage array ordering.
+    } else if (parseInt(allTasks[i][1])){
+      let hiddenCounterDeleteBtn = document.createElement('div');
+      hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
+      toDoList.appendChild(hiddenCounterDeleteBtn);
     // ignore the taskCounter which would parseInt as truthy
     } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
       // Build To Dones list
@@ -98,8 +104,14 @@ export function updateDeletebuttons(){
   deleteBtns.forEach((button, index) => {
     button.addEventListener('click', (e) => {
       console.log(index);
-      allTasks.splice(index, 1) // don't need to reassign this.
-      saveToLocalStorage();
+      console.log(allTasks[index])
+      console.log(allTasks[index][0])
+      console.log(allTasks[index][1])
+      // remove from local Storage
+      localStorage.removeItem(allTasks[index][0]);
+      // Do I need to remove it from allTasks array or not?
+      e.target.parentElement.parentElement.parentElement.remove();
+
     })
   })
 };
@@ -109,10 +121,8 @@ export function updateCheckmarks () {
   let checkmarks = document.querySelectorAll('.move-todones');
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
-      let movedTask = allTasks.splice(index, 1)[0] // Splice AND get the item.
-      // change it's location property
-      movedTask.location = 'todones';
-      saveToLocalStorage();
+      JSON.parse(allTasks[index][1]).location = 'todones';
+      //saveToLocalStorage();
     })
   })
 }

@@ -48,7 +48,11 @@ window.addEventListener('click', (e) => {
 
 export function getLocalStorage () {
   // Rebuild the allTasks array
-  [...allTasks] = Object.entries(localStorage);
+  if (localStorage){
+    // Instead of Object.entries, should I loop through
+    // So that I can skip the taskCounter entry?
+    [...allTasks] = Object.entries(localStorage);
+  }
 }
 
 // export function setLocalStorage () {
