@@ -1,5 +1,6 @@
 import { refreshTruncate, toDos, toDones } from "./truncate.js";
 import { toDoList, toDoneList, getLocalStorage } from "./index.js";
+import { id } from "date-fns/locale";
 
 export function renderTasks () {
   // load it from memory
@@ -44,7 +45,7 @@ export function renderTasks () {
       newTask.classList = "todo-item";
       newTask.innerHTML = 
       `
-      <div class="heading-bar">
+      <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
         <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
         <div class="btns">
           <button class="delete-btn">&times;</button>
@@ -73,7 +74,7 @@ export function renderTasks () {
       let doneTask = document.createElement('div');
       doneTask.classList = "todo-item";
       doneTask.innerHTML = `
-        <div class="heading-bar">
+        <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
           <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
           <div class="btns">
             <button class="move-todos" title="restore" alt="restore"><span class="restore">&circlearrowleft;</span></button>
@@ -87,11 +88,13 @@ export function renderTasks () {
         </div>
       `
       toDoneList.appendChild(doneTask);
-      } else if (parseInt(allTasks[i][1])){
-        let hiddenRestoreBtn = document.createElement('div');
-        hiddenRestoreBtn.classList = ('restore task-counter');
-        toDoList.append(hiddenRestoreBtn);
-      };
+    };
+    // Don't do this twice because taskCounter only exists in the ToDo columns;
+      // } else if (parseInt(allTasks[i][1])){
+      //   let hiddenRestoreBtn = document.createElement('div');
+      //   hiddenRestoreBtn.classList = ('restore task-counter');
+      //   toDoList.appendChild(hiddenRestoreBtn);
+      // };
     };
   };
 
@@ -102,6 +105,11 @@ export function renderTasks () {
 
 };
 
+// Need to fix indexes - they're not going
+// To match up when stuff moves between columns
+// And there are multiple types of buttons but one index list.
+
+// Match id: x to NewTaskX ??
 
 // These 3 functions executed on click of an event button
 export function updateDeletebuttons(){
@@ -111,25 +119,26 @@ export function updateDeletebuttons(){
     button.addEventListener('click', (e) => {
       // remove from local Storage
       localStorage.removeItem(allTasks[index][0]);
-    })
-  })
-};
+    });
+  });
+}
 
 export function updateCheckmarks () {
   // Checkmarks
   let checkmarks = document.querySelectorAll('.move-todones');
   checkmarks.forEach((checkmark, index) => {
     checkmark.addEventListener('click', (e) => {
+      console.log(e.target.parentElement.parentElement.dataset.taskId); // May want to parseInt this.
+      // Read the target ID
+      let targetId = e.target.parentElement.parentElement.dataset.taskId;
       // Get it
-      let overwrite = JSON.parse(allTasks[index][1]);
+      let overwrite = JSON.parse(localStorage.getItem(`newTask${targetId}`));
       // Transform it
       overwrite.location = 'todones';
-      // Save it
-      localStorage.setItem(`${allTasks[index][0]}`, JSON.stringify(overwrite));
-      // localStorage.setItem(allTasks[index][1].location, 'todones')
-      //saveToLocalStorage();
-    })
-  })
+      // Set it
+      localStorage.setItem(`newTask${targetId}`, JSON.stringify(overwrite));
+    });
+  });
 }
 
 export function updateRestoreBtns () {
@@ -137,19 +146,25 @@ export function updateRestoreBtns () {
   let restoreBtns = document.querySelectorAll('.restore');
   restoreBtns.forEach( (button, index) => {
     button.addEventListener('click', (e) => {
-      let movedTask = allTasks.splice(index, 1)[0] // Splice AND get the item. Push only the item, not the whole new array
-      movedTask.location = 'todos';
-      saveToLocalStorage();
-    })
-  })
+      console.log(index);
+      // Read the target ID
+      let targetId = e.target.parentElement.parentElement.parentElement.dataset.taskId;
+      // Get it
+      let restore = JSON.parse(localStorage.getItem(`newTask${targetId}`));
+      // Transform it
+      restore.location = 'todos';
+      // Set it
+      localStorage.setItem(`newTask${targetId}`, JSON.stringify(restore));
+    });
+  });
 }
 
 export function saveToLocalStorage () {
   for (let i = 0; i < allTasks.length; i += 1){
     if (!parseInt(allTasks[i][1])){
       localStorage.setItem(`${allTasks[i][0]}`, `${JSON.stringify(allTasks[i][1])}`)
-    }
-  }
+    };
+  };
 }
 
 export function updateAllButtons () {

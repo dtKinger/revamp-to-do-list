@@ -18,7 +18,6 @@ class Task {
   }  
 }
 
-
 addToDo.addEventListener('click', () => {
   setTimeout(() => {
     addNewForm.querySelector('#title').focus();
