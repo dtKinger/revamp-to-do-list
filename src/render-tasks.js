@@ -115,7 +115,7 @@ export function renderTasks () {
 export function updateDeletebuttons(){
   // Delete buttons
   let deleteBtns = document.querySelectorAll('.delete-btn');
-  deleteBtns.forEach((button, index) => {
+  deleteBtns.forEach((button) => {
     button.addEventListener('click', (e) => {
       // remove from local Storage
       localStorage.removeItem(allTasks[index][0]);
@@ -126,7 +126,7 @@ export function updateDeletebuttons(){
 export function updateCheckmarks () {
   // Checkmarks
   let checkmarks = document.querySelectorAll('.move-todones');
-  checkmarks.forEach((checkmark, index) => {
+  checkmarks.forEach((checkmark) => {
     checkmark.addEventListener('click', (e) => {
       console.log(e.target.parentElement.parentElement.dataset.taskId); // May want to parseInt this.
       // Read the target ID
@@ -144,9 +144,8 @@ export function updateCheckmarks () {
 export function updateRestoreBtns () {
   // Restore Buttons
   let restoreBtns = document.querySelectorAll('.restore');
-  restoreBtns.forEach( (button, index) => {
+  restoreBtns.forEach( (button) => {
     button.addEventListener('click', (e) => {
-      console.log(index);
       // Read the target ID
       let targetId = e.target.parentElement.parentElement.parentElement.dataset.taskId;
       // Get it
