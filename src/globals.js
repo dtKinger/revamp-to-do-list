@@ -12,8 +12,3 @@ if (localStorage.length > 0){
 } else {
   global.allTasks = [];
 }
-
-// save storage
-export function saveStorage () {
-  localStorage = JSON.stringify(allTasks);
-};

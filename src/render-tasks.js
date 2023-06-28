@@ -99,17 +99,8 @@ export function renderTasks () {
   };
 
   // Truncate buttons
-  if (toDos.length > 2 || toDones.length > 2){
-    refreshTruncate();
-  }
 
 };
-
-// Need to fix indexes - they're not going
-// To match up when stuff moves between columns
-// And there are multiple types of buttons but one index list.
-
-// Match id: x to NewTaskX ??
 
 // These 3 functions executed on click of an event button
 export function updateDeletebuttons(){
@@ -156,14 +147,6 @@ export function updateRestoreBtns () {
       localStorage.setItem(`newTask${targetId}`, JSON.stringify(restore));
     });
   });
-}
-
-export function saveToLocalStorage () {
-  for (let i = 0; i < allTasks.length; i += 1){
-    if (!parseInt(allTasks[i][1])){
-      localStorage.setItem(`${allTasks[i][0]}`, `${JSON.stringify(allTasks[i][1])}`)
-    };
-  };
 }
 
 export function updateAllButtons () {

@@ -5,17 +5,14 @@ let chevron = document.querySelector('.shrink-controller', ':before');
 let toDoList = document.getElementById('to-dos');
 let toDoneList = document.getElementById('to-dones');
 
-export let toDos = toDoList.querySelectorAll('.todo-item');
-export let toDones = toDoneList.querySelectorAll('.todo-item');
+export let toDos;
+export let toDones;
 
 
 export function refreshTruncate () {
   
   toDos = toDoList.querySelectorAll('.todo-item');
   toDones = toDoneList.querySelectorAll('.todo-item');
-
-  console.log(toDos);
-  console.info(toDones);
 
   if (toDos.length > 2){
     toDos[2].classList.add('shrink-controller')
