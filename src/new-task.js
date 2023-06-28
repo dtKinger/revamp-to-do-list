@@ -1,5 +1,6 @@
 import { allTasks } from "./globals.js"
 import { renderTasks, updateAllButtons } from "./render-tasks.js"
+import { refreshTruncate } from "./truncate.js";
 
 export const addToDo = document.getElementById('add-todo-btn'); // Add ToDo Button in Nav
 export const addNewForm = document.getElementById('add-new-to-do');
@@ -49,6 +50,7 @@ export function newToDoObj (e) {
 
     renderTasks();
     updateAllButtons();
+    refreshTruncate();
 }
 
 addToDo.addEventListener('click', () => {
@@ -76,4 +78,3 @@ window.addEventListener('keyup', (e) => {
     }
   };
 });
-

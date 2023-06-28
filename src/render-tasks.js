@@ -58,48 +58,39 @@ export function renderTasks () {
         <p class="bumper"></p>
         <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
       </div>
-    `
-    toDoList.appendChild(newTask);
-    // Make a vidusally hidden div and delete-btn to synchronize
-    // the delete-btns with the localStorage array ordering.
-    } else if (parseInt(allTasks[i][1])){
-      let hiddenCounterDeleteBtn = document.createElement('div');
-      let hiddenCheckmarkBtn = document.createElement('div');
-      hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
-      hiddenCheckmarkBtn.classList = ('move-todones task-counter');
-      toDoList.append(hiddenCounterDeleteBtn, hiddenCheckmarkBtn);
-    // ignore the taskCounter which would parseInt as truthy
-    } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
-      // Build To Dones list
-      let doneTask = document.createElement('div');
-      doneTask.classList = "todo-item";
-      doneTask.innerHTML = `
-        <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
-          <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
-          <div class="btns">
-            <button class="move-todos" title="restore" alt="restore"><span class="restore">&circlearrowleft;</span></button>
-          </div>
-        </div>
-        <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
-        <div class="flags">
-          <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
-          <p class="bumper"></p>
-          <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
-        </div>
       `
-      toDoneList.appendChild(doneTask);
-    };
-    // Don't do this twice because taskCounter only exists in the ToDo columns;
-      // } else if (parseInt(allTasks[i][1])){
-      //   let hiddenRestoreBtn = document.createElement('div');
-      //   hiddenRestoreBtn.classList = ('restore task-counter');
-      //   toDoList.appendChild(hiddenRestoreBtn);
-      // };
+      toDoList.appendChild(newTask);
+      // Make a vidusally hidden div and delete-btn to synchronize
+      // the delete-btns with the localStorage array ordering.
+      } else if (parseInt(allTasks[i][1])){
+        let hiddenCounterDeleteBtn = document.createElement('div');
+        let hiddenCheckmarkBtn = document.createElement('div');
+        hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
+        hiddenCheckmarkBtn.classList = ('move-todones task-counter');
+        toDoList.append(hiddenCounterDeleteBtn, hiddenCheckmarkBtn);
+      // ignore the taskCounter which would parseInt as truthy
+      } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
+        // Build To Dones list
+        let doneTask = document.createElement('div');
+        doneTask.classList = "todo-item";
+        doneTask.innerHTML = `
+          <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
+            <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
+            <div class="btns">
+              <button class="move-todos" title="restore" alt="restore"><span class="restore">&circlearrowleft;</span></button>
+            </div>
+          </div>
+          <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
+          <div class="flags">
+            <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
+            <p class="bumper"></p>
+            <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
+          </div>
+        `
+        toDoneList.appendChild(doneTask);
+      };
     };
   };
-
-  // Truncate buttons
-
 };
 
 // These 3 functions executed on click of an event button
@@ -109,7 +100,9 @@ export function updateDeletebuttons(){
   deleteBtns.forEach((button) => {
     button.addEventListener('click', (e) => {
       // remove from local Storage
-      localStorage.removeItem(allTasks[index][0]);
+      let targetId = e.target.parentElement.parentElement.dataset.taskId;
+      localStorage.removeItem(`newTask${targetId}`);
+      checkTaskCounter();
     });
   });
 }
@@ -119,7 +112,6 @@ export function updateCheckmarks () {
   let checkmarks = document.querySelectorAll('.move-todones');
   checkmarks.forEach((checkmark) => {
     checkmark.addEventListener('click', (e) => {
-      console.log(e.target.parentElement.parentElement.dataset.taskId); // May want to parseInt this.
       // Read the target ID
       let targetId = e.target.parentElement.parentElement.dataset.taskId;
       // Get it
@@ -153,4 +145,15 @@ export function updateAllButtons () {
   updateCheckmarks();
   updateDeletebuttons();
   updateRestoreBtns();
+}
+
+function checkTaskCounter () {
+  let toDoItems = document.querySelectorAll('.todo-item');
+  let toDoneItems = document.querySelectorAll('.todone-item') 
+  console.log(toDoItems);
+  console.log(toDoneItems);
+  if (toDoItems.length == 1 && toDoneItems.length == 0){
+    taskCounter = 0;
+    localStorage.removeItem('taskCounter');
+  }
 }

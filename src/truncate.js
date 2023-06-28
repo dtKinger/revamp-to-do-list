@@ -14,6 +14,15 @@ export function refreshTruncate () {
   toDos = toDoList.querySelectorAll('.todo-item');
   toDones = toDoneList.querySelectorAll('.todo-item');
 
+  checkTruncation();
+
+};
+
+truncateBtn.addEventListener("click", () => {
+  refreshTruncate();
+})
+
+export function checkTruncation () {
   if (toDos.length > 2){
     toDos[2].classList.add('shrink-controller')
     for (let i = 2; i < toDos.length; i += 1){
@@ -27,11 +36,4 @@ export function refreshTruncate () {
       toDones[i].classList.add('shrink')
     }
   }
-
-  console.log(chevron);
-
-};
-
-truncateBtn.addEventListener("click", () => {
-  refreshTruncate();
-})
+}

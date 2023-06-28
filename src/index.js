@@ -13,6 +13,7 @@ export const toDoneList = document.getElementById('to-dones');
 
 renderTasks();
 updateAllButtons();
+refreshTruncate();
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -24,11 +25,9 @@ window.addEventListener('click', (e) => {
     
     renderTasks();
     updateAllButtons();
-    console.log('allTasks represents:')
-    console.info(allTasks);
+    // console.log('allTasks represents:')
+    // console.info(allTasks);
     refreshTruncate();
-    console.log(toDos)
-    console.log(toDones)
   };
 });
 
