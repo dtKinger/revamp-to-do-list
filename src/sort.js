@@ -23,36 +23,19 @@ SORT.addEventListener('change', (e) => {
     // sort
     allTasks.sort(compareCreationDate)
     pureRender();
-
-    // save
-    // for (let i = 0; i < allTasks.length; i += 1){
-    //   localStorage.setItem(`${allTasks[i][0]}`, `${allTasks[i][1]}`)
-    // }
-    // // render
-    // renderTasks();
-    // console.log(allTasks);
-    // console.log(localStorage);
     break;
 
     case DUE_DATE : 
     // sort
     allTasks.sort(compareDueDate)
-    // save
-
-    // render
-    
-
-
+    pureRender();
     break;
 
     case PRIORITY :
     // sort
     allTasks.sort(comparePriority)
-    // save
-
-    // render
-
-
+    allTasks.reverse();
+    pureRender();
   }
 });
 
