@@ -11,29 +11,11 @@ export function renderTasks () {
     /// Dump toDoList
     toDoList.innerHTML = `
     <h2 class="section-title">TO DOs</h2>
-    <div class="sort">
-      <label for="sort-to-dones">Sort by:</label>
-      <select name="" id="sort-to-dos">
-        <option value="sort-default" id="sort-dos-default">Default</option>
-        <option value="sort-date-created" id="sort-dones-created">Date created</option>
-        <option value="sort-due-date" id="sort-dones-due">Due Date</option>
-        <option value="sort-priority" id="sort-dones-priority">Priority</option>
-      </select>
-    </div>
     `
 
     /// Dump toDoneList
     toDoneList.innerHTML = `
     <h2 class="section-title">TO DONEs</h2>
-    <div class="sort">
-      <label for="sort-to-dones">Sort by:</label>
-      <select name="" id="sort-to-dones">
-        <option value="sort-default" id="sort-dos-default">Default</option> 
-        <option value="sort-date-created" id="sort-dones-created">Date created</option>
-        <option value="sort-due-date" id="sort-dones-due">Due date</option>
-        <option value="sort-priority" id="sort-dones-priority">Priority</option>
-      </select>
-    </div>
     `
 
   // Build To Dos
