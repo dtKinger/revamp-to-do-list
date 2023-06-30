@@ -1,5 +1,5 @@
 import { getLocalStorage } from ".";
-import { pureRender } from "./render-tasks";
+import { pureRender, updateAllButtons } from "./render-tasks";
 import { refreshTruncate } from "./truncate";
 
 
@@ -19,6 +19,7 @@ SORT.addEventListener('change', (e) => {
     getLocalStorage();
     pureRender();
     refreshTruncate();
+    updateAllButtons();
     break;
 
     case DATE_CREATED : 
@@ -26,6 +27,7 @@ SORT.addEventListener('change', (e) => {
     allTasks.sort(compareCreationDate)
     pureRender();
     refreshTruncate();
+    updateAllButtons();
     break;
 
     case DUE_DATE : 
@@ -33,6 +35,7 @@ SORT.addEventListener('change', (e) => {
     allTasks.sort(compareDueDate)
     pureRender();
     refreshTruncate();
+    updateAllButtons();
     break;
 
     case PRIORITY :
@@ -41,6 +44,7 @@ SORT.addEventListener('change', (e) => {
     allTasks.reverse();
     pureRender();
     refreshTruncate();
+    updateAllButtons();
   }
 });
 
