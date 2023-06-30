@@ -38,6 +38,17 @@
       <input type="date" id="date-picker" name="dueDate" class="due-date" max="9999-12-31" required>
       <button id="submit-new" type="submit">Submit</button>
     </form>
+
+    <div class="sort">
+      <label for="sort-to-dones">Sort by:</label>
+      <select name="" id="sort-to-dos">
+        <option value="sort-default" id="sort-dos-default">Default</option>
+        <option value="sort-date-created" id="sort-dones-created">Date created</option>
+        <option value="sort-due-date" id="sort-dones-due">Due Date</option>
+        <option value="sort-priority" id="sort-dones-priority">Priority</option>
+      </select>
+    </div>
+    
     <div class="container">
       <div id="to-dos">
         <h2 class="section-title">TO DOs</h2>
