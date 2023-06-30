@@ -1,18 +1,21 @@
 export const SORT = document.querySelector('#sort-items');
-const DEFAULT = document.querySelector('#sort-items-default');
-const DATE_CREATED = document.querySelector('#sort-items-created');
-const DUE_DATE = document.querySelector('#sort-items-due');
-const PRIORITY = document.querySelector('#sort-items-priority');
+const DEFAULT = document.querySelector('#sort-items-default').value;
+const DATE_CREATED = document.querySelector('#sort-items-created').value;
+const DUE_DATE = document.querySelector('#sort-items-due').value;
+const PRIORITY = document.querySelector('#sort-items-priority').value;
 
 SORT.addEventListener('change', (e) => {
-  console.log(e);
-  if (e.target == 'DEFAULT'){
+  switch(e.target.value){
+    case DEFAULT : 
     console.log('default');
-  } else if (e.target == 'DATE_CERATED'){
+    break;
+    case DATE_CREATED : 
     console.log('date created');
-  } else if (e.target == 'DUE_DATE'){
+    break;
+    case DUE_DATE : 
     console.log('due date');
-  } else if (e.target == 'PRIORITY'){
-    console.log('priority');
-  };
+    break;
+    case PRIORITY : 
+    console.log('prio');
+  }
 });

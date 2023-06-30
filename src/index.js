@@ -6,7 +6,6 @@ import { refreshTruncate, toDones, toDos } from "./truncate.js";
 export const topNav = document.getElementById('top-nav');
 export const toDoList = document.getElementById('to-dos');
 export const toDoneList = document.getElementById('to-dones');
-// export const main = document.getElementById('main');
 
  /* =================== \
 |       Initialize       |
