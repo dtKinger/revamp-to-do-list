@@ -1,5 +1,6 @@
 import { renderTasks, updateAllButtons } from "./render-tasks.js"
 import { addToDo } from "./new-task.js"
+import { SORT } from "./sort.js"
 import { refreshTruncate, toDones, toDos } from "./truncate.js";
 
 export const topNav = document.getElementById('top-nav');
