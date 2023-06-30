@@ -1,5 +1,6 @@
 import { getLocalStorage } from ".";
 import { pureRender } from "./render-tasks";
+import { refreshTruncate } from "./truncate";
 
 
 
@@ -17,18 +18,21 @@ SORT.addEventListener('change', (e) => {
     // sort
     getLocalStorage();
     pureRender();
+    refreshTruncate();
     break;
 
     case DATE_CREATED : 
     // sort
     allTasks.sort(compareCreationDate)
     pureRender();
+    refreshTruncate();
     break;
 
     case DUE_DATE : 
     // sort
     allTasks.sort(compareDueDate)
     pureRender();
+    refreshTruncate();
     break;
 
     case PRIORITY :
@@ -36,6 +40,7 @@ SORT.addEventListener('change', (e) => {
     allTasks.sort(comparePriority)
     allTasks.reverse();
     pureRender();
+    refreshTruncate();
   }
 });
 
