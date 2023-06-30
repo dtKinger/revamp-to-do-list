@@ -1,78 +1,11 @@
 import { refreshTruncate, toDos, toDones } from "./truncate.js";
 import { toDoList, toDoneList, getLocalStorage } from "./index.js";
-import { id } from "date-fns/locale";
 
 export function renderTasks () {
-  // load it from memory
+
   getLocalStorage();
-
-  // clear front end
-
-    /// Dump toDoList
-    toDoList.innerHTML = `
-    <h2 class="section-title">TO DOs</h2>
-    `
-
-    /// Dump toDoneList
-    toDoneList.innerHTML = `
-    <h2 class="section-title">TO DONEs</h2>
-    `
-
-  // Build To Dos
-  if (allTasks){
-    for (let i = 0; i < allTasks.length; i += 1){
-      // ignore the taskCounter which would parseInt as truthy
-      if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todos'){
-      let newTask = document.createElement('div');
-      newTask.classList = "todo-item";
-      newTask.innerHTML = 
-      `
-      <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
-        <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
-        <div class="btns">
-          <button class="delete-btn">&times;</button>
-          <button class="move-todones" alt="Mark as complete" title="Mark as complete">&check;</button>
-        </div>
-      </div>
-      <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
-      <div class="flags">
-        <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
-        <p class="bumper"></p>
-        <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
-      </div>
-      `
-      toDoList.appendChild(newTask);
-      // Make a vidusally hidden div and delete-btn to synchronize
-      // the delete-btns with the localStorage array ordering.
-      } else if (parseInt(allTasks[i][1])){
-        let hiddenCounterDeleteBtn = document.createElement('div');
-        let hiddenCheckmarkBtn = document.createElement('div');
-        hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
-        hiddenCheckmarkBtn.classList = ('move-todones task-counter');
-        toDoList.append(hiddenCounterDeleteBtn, hiddenCheckmarkBtn);
-      // ignore the taskCounter which would parseInt as truthy
-      } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
-        // Build To Dones list
-        let doneTask = document.createElement('div');
-        doneTask.classList = "todo-item";
-        doneTask.innerHTML = `
-          <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
-            <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
-            <div class="btns">
-              <button class="move-todos" title="restore" alt="restore"><span class="restore">&circlearrowleft;</span></button>
-            </div>
-          </div>
-          <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
-          <div class="flags">
-            <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
-            <p class="bumper"></p>
-            <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
-          </div>
-        `
-        toDoneList.appendChild(doneTask);
-      };
-    };
-  };
+  pureRender();
+  
 };
 
 // These 3 functions executed on click of an event button
@@ -138,4 +71,72 @@ function checkTaskCounter () {
     taskCounter = 0;
     localStorage.removeItem('taskCounter');
   }
+}
+
+export function pureRender () {
+  // clear front end
+    /// Dump toDoList
+    toDoList.innerHTML = `
+    <h2 class="section-title">TO DOs</h2>
+    `
+    /// Dump toDoneList
+    toDoneList.innerHTML = `
+    <h2 class="section-title">TO DONEs</h2>
+    `
+
+  // Build To Dos
+  if (allTasks){
+    for (let i = 0; i < allTasks.length; i += 1){
+      // ignore the taskCounter which would parseInt as truthy
+      if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todos'){
+      let newTask = document.createElement('div');
+      newTask.classList = "todo-item";
+      newTask.innerHTML = 
+      `
+      <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
+        <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
+        <div class="btns">
+          <button class="delete-btn">&times;</button>
+          <button class="move-todones" alt="Mark as complete" title="Mark as complete">&check;</button>
+        </div>
+      </div>
+      <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
+      <div class="flags">
+        <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
+        <p class="bumper"></p>
+        <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
+      </div>
+      `
+      toDoList.appendChild(newTask);
+      // Make a vidusally hidden div and delete-btn to synchronize
+      // the delete-btns with the localStorage array ordering.
+      } else if (parseInt(allTasks[i][1])){
+        let hiddenCounterDeleteBtn = document.createElement('div');
+        let hiddenCheckmarkBtn = document.createElement('div');
+        hiddenCounterDeleteBtn.classList = ('delete-btn task-counter');
+        hiddenCheckmarkBtn.classList = ('move-todones task-counter');
+        toDoList.append(hiddenCounterDeleteBtn, hiddenCheckmarkBtn);
+      // ignore the taskCounter which would parseInt as truthy
+      } else if (!parseInt(allTasks[i][1]) && JSON.parse(allTasks[i][1]).location === 'todones') {
+        // Build To Dones list
+        let doneTask = document.createElement('div');
+        doneTask.classList = "todo-item";
+        doneTask.innerHTML = `
+          <div class="heading-bar" data-task-id="${JSON.parse(allTasks[i][1]).id}">
+            <h3 class="title">${JSON.parse(allTasks[i][1]).title}</h3>
+            <div class="btns">
+              <button class="move-todos" title="restore" alt="restore"><span class="restore">&circlearrowleft;</span></button>
+            </div>
+          </div>
+          <p class="description">${JSON.parse(allTasks[i][1]).description}</p>
+          <div class="flags">
+            <span class="priority priority__${JSON.parse(allTasks[i][1]).priority}">${JSON.parse(allTasks[i][1]).priority}</span>
+            <p class="bumper"></p>
+            <span class="due-date">${JSON.parse(allTasks[i][1]).dueDate}</span>
+          </div>
+        `
+        toDoneList.appendChild(doneTask);
+      };
+    };
+  };
 }
