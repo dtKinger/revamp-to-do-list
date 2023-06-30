@@ -1,3 +1,4 @@
+import { getLocalStorage } from ".";
 import { pureRender } from "./render-tasks";
 
 
@@ -14,7 +15,8 @@ SORT.addEventListener('change', (e) => {
   switch(e.target.value){
     case DEFAULT : 
     // sort
-    allTasks.sort()
+    getLocalStorage();
+    pureRender();
     break;
 
     case DATE_CREATED : 
