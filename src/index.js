@@ -22,7 +22,6 @@ refreshTruncate()
 
 window.addEventListener('click', (e) => {
   if (e.target.classList.contains('move-todones') || e.target.classList.contains('restore') || e.target.classList.contains('delete-btn')){
-    
     renderTasks();
     updateAllButtons();
     clickSwitch();
@@ -31,7 +30,7 @@ window.addEventListener('click', (e) => {
 });
 
 window.addEventListener('click', (e) => {
-  if (e.target != addNewForm ){
+  if (e.target != addNewForm){
     helpCloseAddModal();
   }
   if (e.target == addToDo){

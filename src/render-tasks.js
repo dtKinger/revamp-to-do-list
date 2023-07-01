@@ -1,4 +1,4 @@
-import { refreshTruncate, toDos, toDones } from "./truncate.js";
+import { refreshTruncate, toDos, toDones, checkTruncation } from "./truncate.js";
 import { toDoList, toDoneList, getLocalStorage } from "./index.js";
 
 export function renderTasks () {
@@ -18,6 +18,7 @@ export function updateDeletebuttons(){
       let targetId = e.target.parentElement.parentElement.dataset.taskId;
       localStorage.removeItem(`newTask${targetId}`);
       checkTaskCounter();
+      refreshTruncate();
     });
   });
 }

@@ -1,4 +1,5 @@
-const truncateBtn = document.querySelector('.truncate');
+const FOCUS_BTN = document.querySelector('#focus');
+const CHAOS_BTN = document.querySelector('#chaos');
 
 let chevron = document.querySelector('.shrink-controller', ':before');
 
@@ -18,22 +19,44 @@ export function refreshTruncate () {
 
 };
 
-truncateBtn.addEventListener("click", () => {
+FOCUS_BTN.addEventListener('click', () => {
   refreshTruncate();
-})
+});
+
+CHAOS_BTN.addEventListener('click', () => {
+  removeTruncation();
+});
+
+
 
 export function checkTruncation () {
   if (toDos.length > 2){
+    FOCUS_BTN.classList.add('show');
+    CHAOS_BTN.classList.add('show');
     toDos[2].classList.add('shrink-controller')
     for (let i = 2; i < toDos.length; i += 1){
       toDos[i].classList.add('shrink')
     }
+  } else if (toDos.length <= 2 && toDones.length <= 2){
+    FOCUS_BTN.classList.remove('show');
+    CHAOS_BTN.classList.remove('show');
   }
 
   if (toDones.length > 2){
+    FOCUS_BTN.classList.add('show');
+    CHAOS_BTN.classList.add('show');
     toDones[2].classList.add('shrink-controller')
     for (let i = 2; i < toDones.length; i += 1){
       toDones[i].classList.add('shrink')
     }
+  }
+}
+
+export function removeTruncation () {
+  for (let i = 0; i < toDos.length; i += 1){
+    toDos[i].classList.remove('shrink')
+  }
+  for (let i = 0; i < toDones.length; i += 1){
+    toDones[i].classList.remove('shrink')
   }
 }
