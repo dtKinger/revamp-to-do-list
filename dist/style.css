@@ -225,6 +225,7 @@ a:hover{
   border: 2px solid var(--color-bg-secondary);
   border-radius: 5px;
   background-color: white;
+  max-width: 420px;
 }
 
 .to-do{
