@@ -3,37 +3,13 @@ import { pureRender, updateAllButtons } from "./render-tasks";
 import { refreshTruncate } from "./truncate";
 
 export const SORT = document.querySelector('#sort-items');
-const DEFAULT = document.querySelector('#sort-items-default').value;
-const DATE_CREATED = document.querySelector('#sort-items-created').value;
-const DUE_DATE = document.querySelector('#sort-items-due').value;
-const PRIORITY = document.querySelector('#sort-items-priority').value;
+export const DEFAULT = document.querySelector('#sort-items-default').value;
+export const DATE_CREATED = document.querySelector('#sort-items-created').value;
+export const DUE_DATE = document.querySelector('#sort-items-due').value;
+export const PRIORITY = document.querySelector('#sort-items-priority').value;
 
 SORT.addEventListener('change', (e) => {
-  switch(e.target.value){
-    case DEFAULT : 
-    // sort
-    getLocalStorage();
-    refreshEverything();
-    break;
-
-    case DATE_CREATED : 
-    // sort
-    allTasks.sort(compareCreationDate)
-    refreshEverything();
-    break;
-
-    case DUE_DATE : 
-    // sort
-    allTasks.sort(compareDueDate)
-    refreshEverything();
-    break;
-
-    case PRIORITY :
-    // sort
-    allTasks.sort(comparePriority)
-    // allTasks.reverse();
-    refreshEverything();
-  }
+  sortSwitch(e);
 });
 
 function compareCreationDate( a, b ){
@@ -83,4 +59,62 @@ function refreshEverything () {
   pureRender();
   // refreshTruncate();
   updateAllButtons();
+}
+
+export function sortSwitch (e) {
+  switch(e.target.value){
+    case DEFAULT : 
+    // sort
+    getLocalStorage();
+    refreshEverything();
+    break;
+
+    case DATE_CREATED : 
+    // sort
+    allTasks.sort(compareCreationDate)
+    refreshEverything();
+    break;
+
+    case DUE_DATE : 
+    // sort
+    allTasks.sort(compareDueDate)
+    refreshEverything();
+    break;
+
+    case PRIORITY :
+    // sort
+    allTasks.sort(comparePriority)
+    // allTasks.reverse();
+    refreshEverything();
+  }
+}
+
+export function clickSwitch() {
+  // Get the sort filter
+  let currentSortFilter = SORT.options[SORT.selectedIndex].value;
+  switch(currentSortFilter){
+    case DEFAULT : 
+    // sort
+    getLocalStorage();
+    refreshEverything();
+    break;
+
+    case DATE_CREATED : 
+    // sort
+    allTasks.sort(compareCreationDate)
+    refreshEverything();
+    break;
+
+    case DUE_DATE : 
+    // sort
+    allTasks.sort(compareDueDate)
+    refreshEverything();
+    break;
+
+    case PRIORITY :
+    // sort
+    allTasks.sort(comparePriority)
+    // allTasks.reverse();
+    refreshEverything();
+  }
 }

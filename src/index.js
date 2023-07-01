@@ -1,6 +1,6 @@
 import { renderTasks, updateAllButtons } from "./render-tasks.js"
 import { addToDo } from "./new-task.js"
-import { SORT } from "./sort.js"
+import { clickSwitch } from "./sort.js"
 import { refreshTruncate, toDones, toDos } from "./truncate.js";
 
 export const topNav = document.getElementById('top-nav');
@@ -13,7 +13,7 @@ export const toDoneList = document.getElementById('to-dones');
 
 renderTasks();
 updateAllButtons();
-// refreshTruncate();
+// refreshTruncate()
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -25,9 +25,10 @@ window.addEventListener('click', (e) => {
     
     renderTasks();
     updateAllButtons();
+    clickSwitch();
     // console.log('allTasks represents:')
     // console.info(allTasks);
-    refreshTruncate();
+    // refreshTruncate();
   };
 });
 
@@ -39,3 +40,4 @@ export function getLocalStorage () {
     [...allTasks] = Object.entries(localStorage);
   }
 }
+
