@@ -13,7 +13,7 @@ export const toDoneList = document.getElementById('to-dones');
 
 renderTasks();
 updateAllButtons();
-refreshTruncate();
+// refreshTruncate();
 
  /* =================== \
 |      END PAGE LOAD     |

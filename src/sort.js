@@ -2,53 +2,39 @@ import { getLocalStorage } from ".";
 import { pureRender, updateAllButtons } from "./render-tasks";
 import { refreshTruncate } from "./truncate";
 
-
-
 export const SORT = document.querySelector('#sort-items');
 const DEFAULT = document.querySelector('#sort-items-default').value;
 const DATE_CREATED = document.querySelector('#sort-items-created').value;
 const DUE_DATE = document.querySelector('#sort-items-due').value;
 const PRIORITY = document.querySelector('#sort-items-priority').value;
 
-console.log(Object.entries(localStorage).length);
-
 SORT.addEventListener('change', (e) => {
   switch(e.target.value){
     case DEFAULT : 
     // sort
     getLocalStorage();
-    pureRender();
-    refreshTruncate();
-    updateAllButtons();
+    refreshEverything();
     break;
 
     case DATE_CREATED : 
     // sort
     allTasks.sort(compareCreationDate)
-    pureRender();
-    refreshTruncate();
-    updateAllButtons();
+    refreshEverything();
     break;
 
     case DUE_DATE : 
     // sort
     allTasks.sort(compareDueDate)
-    pureRender();
-    refreshTruncate();
-    updateAllButtons();
+    refreshEverything();
     break;
 
     case PRIORITY :
     // sort
     allTasks.sort(comparePriority)
-    allTasks.reverse();
-    pureRender();
-    refreshTruncate();
-    updateAllButtons();
+    // allTasks.reverse();
+    refreshEverything();
   }
 });
-
-
 
 function compareCreationDate( a, b ){
   if (JSON.parse(a[1]).createdAt < JSON.parse(b[1]).createdAt){
@@ -60,22 +46,41 @@ function compareCreationDate( a, b ){
   };
 }
 
-function compareDueDate ( a, b) {
+function compareDueDate ( a, b ) {
   if (JSON.parse(a[1]).dueDate < JSON.parse(b[1]).dueDate){
     return -1;
   } else if (JSON.parse(a[1]).dueDate > JSON.parse(b[1]).dueDate){
     return 1;
   } else {
     return 0;
-  }
+  };
 }
 
 function comparePriority ( a, b ) {
-  if (JSON.parse(a[1]).priority < JSON.parse(b[1]).priority){
+
+  // Assign a numerical value to priorities to sort them
+  let priorityMap = (whichArray) => {
+    if (JSON.parse(whichArray[1]).priority == 'high'){
+      return 1;
+    } else if (JSON.parse(whichArray[1]).priority == 'medium') {
+      return 2;
+    } else if (JSON.parse(whichArray[1]).priority == 'low') {
+      return 3;
+    };
+  } 
+  
+
+  if (priorityMap(a) < priorityMap(b)){
     return -1;
-  } else if (JSON.parse(a[1]).priority > JSON.parse(b[1]).priority){
+  } else if (priorityMap(a) > priorityMap(b)){
     return 1;
   } else {
     return 0;
   }
+}
+
+function refreshEverything () {
+  pureRender();
+  // refreshTruncate();
+  updateAllButtons();
 }

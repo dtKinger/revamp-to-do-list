@@ -291,15 +291,15 @@ a:hover{
   background-color: lightblue;
 }
 
-.priority__High {
+.priority__high {
   background-color: red;
 }
 
-.priority__Medium {
+.priority__medium {
   background-color: yellow;
 }
 
-.priority__Low {
+.priority__low {
   background-color: green;
 }
 
