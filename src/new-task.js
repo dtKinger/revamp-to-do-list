@@ -50,7 +50,7 @@ export function newToDoObj (e) {
 
     renderTasks();
     updateAllButtons();
-    // refreshTruncate();
+    refreshTruncate();
 }
 
 addToDo.addEventListener('click', () => {

@@ -1,5 +1,5 @@
 import { renderTasks, updateAllButtons } from "./render-tasks.js"
-import { addToDo } from "./new-task.js"
+import { addToDo, addNewForm, helpCloseAddModal, helpOpenAddModal } from "./new-task.js"
 import { clickSwitch } from "./sort.js"
 import { refreshTruncate, toDones, toDos } from "./truncate.js";
 
@@ -13,7 +13,7 @@ export const toDoneList = document.getElementById('to-dones');
 
 renderTasks();
 updateAllButtons();
-// refreshTruncate()
+refreshTruncate()
 
  /* =================== \
 |      END PAGE LOAD     |
@@ -26,11 +26,18 @@ window.addEventListener('click', (e) => {
     renderTasks();
     updateAllButtons();
     clickSwitch();
-    // console.log('allTasks represents:')
-    // console.info(allTasks);
-    // refreshTruncate();
+    refreshTruncate();
   };
 });
+
+window.addEventListener('click', (e) => {
+  if (e.target != addNewForm ){
+    helpCloseAddModal();
+  }
+  if (e.target == addToDo){
+    helpOpenAddModal();
+  }
+})
 
 export function getLocalStorage () {
   // Rebuild the allTasks array
