@@ -29,14 +29,16 @@ window.addEventListener('click', (e) => {
   };
 });
 
-window.addEventListener('click', (e) => {
-  if (e.target != addNewForm){
-    helpCloseAddModal();
-  }
-  if (e.target == addToDo){
-    helpOpenAddModal();
-  }
-})
+
+// Revisit this tomorrow
+// window.addEventListener('click', (e) => {
+//   if (e.target != addNewForm){
+//     helpCloseAddModal();
+//   }
+//   if (e.target == addToDo){
+//     helpOpenAddModal();
+//   }
+// })
 
 export function getLocalStorage () {
   // Rebuild the allTasks array
