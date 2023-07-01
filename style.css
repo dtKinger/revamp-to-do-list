@@ -376,10 +376,6 @@ a:hover{
   padding: 10px;
 }
 
-.show {
-  display: flex;
-  flex-direction: column
-}
 
 .form > * {
   padding: 8px;
@@ -400,15 +396,23 @@ a:hover{
 }
 
 .truncate {
+  display: none;
   text-align: center;
   margin: 0 auto;
+
+  border: 0;
+  border-radius: 5px;
+  background-color: ivory;
+  color:rgb(56, 56, 56);
+  max-width: 100px;
+
 }
 
 .shrink-controller {
   position: relative;
 }
 
-.shrink-controller::before {
+.shrink-controller__accordion {
   display: flex;
   content: "^";
   font-size: 1.5em;
@@ -428,17 +432,6 @@ a:hover{
 
 .shrink > p, .shrink > div.flags{
   display: none;
-}
-
-.truncate-btns > button {
-  border: 0;
-  border-radius: 5px;
-  max-width: 100px;
-}
-
-.truncate-btns {
-  width: 240px;
-  margin: 0 auto;
 }
 
 .visually-hidden {
@@ -467,4 +460,10 @@ a:hover{
   padding: 10px;
   margin: 10px;
   text-align: center;
+}
+
+
+.show {
+  display: flex;
+  flex-direction: column
 }
