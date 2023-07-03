@@ -77,11 +77,11 @@ export function pureRender () {
   // clear front end
     /// Dump toDoList
     toDoList.innerHTML = `
-    <h2 class="section-title">TO DOs</h2>
+    <h2 class="section-title">TO DOs 🫠🫠🫠</h2>
     `
     /// Dump toDoneList
     toDoneList.innerHTML = `
-    <h2 class="section-title">TO DONEs</h2>
+    <h2 class="section-title">TO DONEs 😀😀😀</h2>
     `
 
   // Build To Dos
