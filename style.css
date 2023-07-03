@@ -229,13 +229,14 @@ a:hover{
   max-width: 420px;
 }
 
-.to-do{
+.todo-item{
+  min-width: 200px;
   
 }
 
 #to-dones > .todo-item{
-  box-shadow: 0px 0px 3px 2px green;
-  border: 2px solid green;
+  box-shadow: 0px 0px 3px 2px gold;
+  border: 2px solid goldenrod;
 }
 
 .todo-item p {
@@ -343,7 +344,9 @@ a:hover{
 
 .btns {
   justify-content: center;
+  min-width: 70px;
 }
+
 
 .top-nav {
   width: 100%;
@@ -490,3 +493,30 @@ a:hover{
   border-radius: 5px;
   border: 2px solid rgb(56, 56, 56);
 }
+
+.animate-done {
+  animation-duration: 1s;
+  transition: ease-in-out 1s;
+}
+
+#to-dos, #to-dones {
+  max-width: 50%;
+}
+
+
+#to-dones .btns {
+  min-width: 35px; 
+}
+
+@media screen and (max-width: 800px){
+
+  .container{
+    flex-wrap: wrap;
+  } 
+  #to-dos, #to-dones {
+    max-width: 90%;
+    min-width: 90%;
+    width: 90%; 
+  }
+}
+
