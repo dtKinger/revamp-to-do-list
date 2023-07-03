@@ -77,3 +77,9 @@ window.addEventListener('keyup', (e) => {
     }
   };
 });
+
+addNewForm.querySelector('.close').addEventListener('click', () => {
+  if (addNewForm.classList.contains('show')){
+    addNewForm.classList.remove('show')
+  }
+});

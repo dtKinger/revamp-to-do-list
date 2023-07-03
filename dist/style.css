@@ -468,3 +468,13 @@ a:hover{
   display: flex;
   flex-direction: column
 }
+
+#submit-new {
+  border-radius: 10px;
+}
+
+.close {
+  background-color: transparent;
+  color: ivory;
+  border-radius: 10px;
+}
