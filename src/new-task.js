@@ -71,10 +71,9 @@ export function helpCloseAddModal () {
 
 // Let Escape key close the Add ToDo box
 window.addEventListener('keyup', (e) => {
-  if (document.querySelector('.show')){
-  let target = document.querySelector('.show')  
+  if (addNewForm.classList.contains('show')){
     if (e.key === 'Escape'){
-      target.classList.remove('show')
+      addNewForm.classList.remove('show')
     }
   };
 });
