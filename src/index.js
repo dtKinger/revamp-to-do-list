@@ -11,9 +11,16 @@ export const toDoneList = document.getElementById('to-dones');
 |       Initialize       |
  \ =================== */
 
-renderTasks();
-updateAllButtons();
-refreshTruncate()
+if (localStorage.length == 0){
+  renderTasks();
+  updateAllButtons();
+  refreshTruncate();
+  console.log('Welcome onboarding')
+} else {
+  renderTasks();
+  updateAllButtons();
+  refreshTruncate();
+}
 
  /* =================== \
 |      END PAGE LOAD     |
