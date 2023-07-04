@@ -42,17 +42,13 @@ function comparePriority ( a, b ) {
   // Assign a numerical value to priorities to sort them
   let priorityMap = (whichArray) => {
     if (JSON.parse(whichArray[1]).priority == 'high'){
-      console.log(JSON.parse(whichArray[1]).priority)
       return 1;
     } else if (JSON.parse(whichArray[1]).priority == 'medium') {
-      console.log(JSON.parse(whichArray[1]).priority)
       return 2;
     } else if (JSON.parse(whichArray[1]).priority == 'low') {
-      console.log(JSON.parse(whichArray[1]).priority)
       return 3;
     };
   } 
-  
 
   if (priorityMap(a) < priorityMap(b)){
     return -1;
@@ -65,8 +61,8 @@ function comparePriority ( a, b ) {
 
 function refreshEverything () {
   pureRender();
-  refreshTruncate();
-  updateAllButtons();
+  // refreshTruncate();
+  updateAllButtons();``
 }
 
 export function sortSwitch (e) {
