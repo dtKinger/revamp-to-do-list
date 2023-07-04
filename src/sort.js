@@ -61,7 +61,7 @@ function comparePriority ( a, b ) {
 
 function refreshEverything () {
   pureRender();
-  // refreshTruncate();
+  refreshTruncate();
   updateAllButtons();``
 }
 

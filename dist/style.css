@@ -276,7 +276,7 @@ a:hover{
 .flags {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
@@ -288,10 +288,12 @@ a:hover{
   border-radius: 8px;
   padding: 4px 8px;
   white-space: nowrap;
+  color: rgb(56, 56, 56);
+  font-size: .75em;
 }
 
 .due-date {
-  background-color: lightblue;
+  background-color: #00c0ff;
 }
 
 .priority__high {
@@ -322,11 +324,12 @@ a:hover{
   padding: 2px 8px;
   width: 32px;
   height: 32px;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 .move-todones, .move-todos{
   background-color: green;
-  border: 1px solid black;
 }
 
 .move-todos{

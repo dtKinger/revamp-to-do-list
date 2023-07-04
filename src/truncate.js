@@ -1,5 +1,5 @@
 const FOCUS_BTN = document.querySelector('#focus');
-const CHAOS_BTN = document.querySelector('#chaos');
+const SEE_ALL_BTN = document.querySelector('#see-all');
 
 let chevron = document.querySelector('.shrink-controller', ':before');
 
@@ -23,7 +23,7 @@ FOCUS_BTN.addEventListener('click', () => {
   refreshTruncate();
 });
 
-CHAOS_BTN.addEventListener('click', () => {
+SEE_ALL_BTN.addEventListener('click', () => {
   removeTruncation();
 });
 
@@ -32,19 +32,19 @@ CHAOS_BTN.addEventListener('click', () => {
 export function checkTruncation () {
   if (toDos.length > 2){
     FOCUS_BTN.classList.add('show');
-    CHAOS_BTN.classList.add('show');
+    SEE_ALL_BTN.classList.add('show');
     toDos[2].classList.add('shrink-controller')
     for (let i = 2; i < toDos.length; i += 1){
       toDos[i].classList.add('shrink')
     }
   } else if (toDos.length <= 2 && toDones.length <= 2){
     FOCUS_BTN.classList.remove('show');
-    CHAOS_BTN.classList.remove('show');
+    SEE_ALL_BTN.classList.remove('show');
   }
 
   if (toDones.length > 2){
     FOCUS_BTN.classList.add('show');
-    CHAOS_BTN.classList.add('show');
+    SEE_ALL_BTN.classList.add('show');
     toDones[2].classList.add('shrink-controller')
     for (let i = 2; i < toDones.length; i += 1){
       toDones[i].classList.add('shrink')
