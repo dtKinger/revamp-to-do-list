@@ -435,7 +435,11 @@ a:hover{
   cursor: pointer;
 }
 
-.shrink > p, .shrink > div.flags{
+/* .shrink > p, .shrink > div.flags{
+  display: none;
+} */
+
+.shrink > :not(:nth-child(1)) {
   display: none;
 }
 
