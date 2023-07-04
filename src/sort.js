@@ -1,6 +1,7 @@
 import { getLocalStorage } from ".";
 import { pureRender, updateAllButtons } from "./render-tasks";
 import { refreshTruncate } from "./truncate";
+import { compareAsc, compareDesc, parseISO } from "date-fns";
 
 export const SORT = document.querySelector('#sort-items');
 export const DEFAULT = document.querySelector('#sort-items-default').value;
@@ -13,23 +14,27 @@ SORT.addEventListener('change', (e) => {
 });
 
 function compareCreationDate( a, b ){
-  if (JSON.parse(a[1]).createdAt < JSON.parse(b[1]).createdAt){
-    return -1;
-  } else if (JSON.parse(a[1]).createdAt > JSON.parse(b[1]).createdAt){
-    return 1;
-  } else {
-    return 0;
-  };
+let aDate = parseISO(JSON.parse(a[1]).createdAt);
+let bDate = parseISO(JSON.parse(b[1]).createdAt);
+
+return compareAsc(aDate , bDate);
+
+// My solution from scratch worked too...
+  //   if (JSON.parse(a[1]).createdAt < JSON.parse(b[1]).createdAt){
+  //     return -1;
+  //   } else if (JSON.parse(a[1]).createdAt > JSON.parse(b[1]).createdAt){
+  //     return 1;
+  //   } else {
+  //     return 0;
+  //   };
 }
 
 function compareDueDate ( a, b ) {
-  if (JSON.parse(a[1]).dueDate < JSON.parse(b[1]).dueDate){
-    return -1;
-  } else if (JSON.parse(a[1]).dueDate > JSON.parse(b[1]).dueDate){
-    return 1;
-  } else {
-    return 0;
-  };
+  let aDashDate = parseISO(JSON.parse(a[1]).dueDate); 
+  let bDashDate = parseISO(JSON.parse(b[1]).dueDate); 
+
+  return compareAsc( aDashDate , bDashDate);
+  
 }
 
 function comparePriority ( a, b ) {
@@ -37,10 +42,13 @@ function comparePriority ( a, b ) {
   // Assign a numerical value to priorities to sort them
   let priorityMap = (whichArray) => {
     if (JSON.parse(whichArray[1]).priority == 'high'){
+      console.log(JSON.parse(whichArray[1]).priority)
       return 1;
     } else if (JSON.parse(whichArray[1]).priority == 'medium') {
+      console.log(JSON.parse(whichArray[1]).priority)
       return 2;
     } else if (JSON.parse(whichArray[1]).priority == 'low') {
+      console.log(JSON.parse(whichArray[1]).priority)
       return 3;
     };
   } 
